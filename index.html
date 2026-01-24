@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رمضان كريم | توصيل وجبات رمضان أبوظبي</title>
+    <title>رمضان كريم | أول وأكبر منصة لتوصيل وجبات رمضان في أبوظبي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        /* ====== إعادة الضبط والأنيميشن ====== */
         * {
             margin: 0;
             padding: 0;
@@ -14,408 +15,827 @@
             -webkit-tap-highlight-color: transparent;
         }
         
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: #fef9f3;
-            color: #2c3e50;
-            overflow-x: hidden;
+        :root {
+            --primary: #0a3d62;
+            --secondary: #1e5f8a;
+            --accent: #f9c74f;
+            --accent-dark: #f3b82c;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --light: #fef9f3;
+            --dark: #2c3e50;
+            --gray: #666;
+            --gray-light: #eef2f7;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* شاشة التحميل */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* ====== أنيميشن أساسية ====== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* ====== شاشة التحميل ====== */
         #pageLoader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         
         .loader-content {
             text-align: center;
             color: white;
-            padding: 20px;
+            animation: fadeInUp 0.8s ease;
         }
         
         .loader-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: pulse 1.5s infinite;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+            color: var(--accent);
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-        
-        /* الصفحات */
-        .page {
-            display: none;
-            min-height: 100vh;
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        /* الصفحة الرئيسية التسويقية */
-        #landingPage {
-            background: linear-gradient(rgba(10, 61, 98, 0.9), rgba(30, 95, 138, 0.9));
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        
-        .landing-content {
-            max-width: 800px;
-            animation: fadeIn 1s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .ramadan-badge {
-            background: #f9c74f;
-            color: #2c3e50;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        
-        .landing-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-        
-        @media (max-width: 768px) {
-            .landing-title {
-                font-size: 2rem;
-            }
-        }
-        
-        .landing-subtitle {
+        .loader-text {
             font-size: 1.1rem;
-            margin-bottom: 30px;
             opacity: 0.9;
-            line-height: 1.6;
         }
         
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .feature-card {
+        .loading-progress {
+            width: 200px;
+            height: 4px;
             background: rgba(255, 255, 255, 0.1);
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 2rem;
+            overflow: hidden;
         }
         
-        .feature-icon {
-            font-size: 2rem;
-            color: #f9c74f;
-            margin-bottom: 15px;
+        .loading-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
         }
         
-        .feature-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+        /* ====== الصفحة الرئيسية التسويقية ====== */
+        #landingPage {
+            min-height: 100vh;
+            background: linear-gradient(135deg, 
+                rgba(10, 61, 98, 0.95) 0%, 
+                rgba(30, 95, 138, 0.95) 100%),
+                url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
         }
         
-        .cta-button {
-            background: #f9c74f;
-            color: #2c3e50;
-            border: none;
-            padding: 16px 40px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            border-radius: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 30px auto 0;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(249, 199, 79, 0.3);
+        /* النجوم المتحركة */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
         
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(249, 199, 79, 0.4);
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: float 3s infinite ease-in-out;
         }
         
-        /* صفحة المطاعم */
-        #restaurantsPage {
-            padding-bottom: 80px;
-            padding-top: 70px;
-        }
-        
-        /* الهيدر */
-        .header {
+        /* الهيدر الخاص بالصفحة الترحيبية */
+        .landing-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
-            color: white;
-            padding: 15px 0;
+            padding: 1.5rem 2rem;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
         }
         
-        .container {
+        .landing-header.scrolled {
+            background: rgba(10, 61, 98, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .landing-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .landing-logo-icon {
+            background: var(--accent);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--dark);
+            box-shadow: 0 4px 15px rgba(249, 199, 79, 0.3);
+        }
+        
+        .landing-logo-text h1 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 0.2rem;
+        }
+        
+        .landing-logo-text p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .landing-cta {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-family: 'Cairo';
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(249, 199, 79, 0.3);
+        }
+        
+        .landing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 199, 79, 0.4);
+        }
+        
+        /* المحتوى الرئيسي */
+        .landing-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+        
+        .hero-badge i {
+            color: var(--accent);
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            animation: fadeInUp 0.8s ease 0.8s backwards;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease 1s backwards;
+        }
+        
+        .cta-primary {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-family: 'Cairo';
+            font-weight: 900;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(249, 199, 79, 0.3);
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(249, 199, 79, 0.4);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            font-family: 'Cairo';
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+        
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* ميزات الخدمة */
+        .features-section {
+            padding: 6rem 2rem;
+            background: white;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            font-size: 1.1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        /* المطاعم الشريكة */
+        .restaurants-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f7ff 100%);
+            position: relative;
+        }
+        
+        .restaurants-slider {
+            max-width: 1200px;
+            margin: 3rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .restaurants-track {
+            display: flex;
+            gap: 2rem;
+            animation: slideRestaurants 30s linear infinite;
+        }
+        
+        @keyframes slideRestaurants {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .restaurant-slide {
+            flex: 0 0 250px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .restaurant-slide img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        /* دعوة للعمل */
+        .cta-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .cta-title {
+                font-size: 2.2rem;
+            }
+        }
+        
+        .cta-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+        }
+        
+        /* ====== صفحة المطاعم ====== */
+        #restaurantsPage {
+            display: none;
+            min-height: 100vh;
+            padding-bottom: 80px;
+            background: var(--light);
+        }
+        
+        /* الهيدر */
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
         
-        .logo {
+        .app-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 1rem;
             text-decoration: none;
-            color: white;
+            color: var(--primary);
         }
         
-        .logo-icon {
-            background: #f9c74f;
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+        .app-logo-icon {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.3rem;
+            color: white;
         }
         
-        .logo-text h1 {
+        .app-logo-text h1 {
             font-size: 1.2rem;
-            font-weight: 800;
+            font-weight: 900;
         }
         
-        .back-button {
-            background: rgba(255, 255, 255, 0.15);
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .back-to-home {
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 0.6rem 1.2rem;
             border-radius: 8px;
             font-family: 'Cairo';
-            font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
+            transition: var(--transition);
         }
         
-        .cart-btn {
-            background: rgba(255, 255, 255, 0.15);
+        .back-to-home:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .cart-btn-header {
+            background: var(--light);
             border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             cursor: pointer;
             position: relative;
+            transition: var(--transition);
+        }
+        
+        .cart-btn-header:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
         }
         
         .cart-badge {
             position: absolute;
             top: -5px;
             right: -5px;
-            background: #e74c3c;
+            background: var(--danger);
             color: white;
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             font-size: 0.7rem;
-            font-weight: 700;
+            font-weight: 800;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
         /* الفلتر */
-        .filters {
+        .filters-section {
             position: fixed;
-            top: 70px;
+            top: 73px;
             left: 0;
             width: 100%;
             background: white;
-            padding: 15px 0;
+            padding: 1.2rem 0;
             z-index: 999;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #f0f0f0;
+            transition: var(--transition);
+        }
+        
+        .filters-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
         
         .filters-row {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            gap: 1rem;
+            align-items: center;
         }
         
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
             .filters-row {
-                flex-direction: row;
-                gap: 15px;
+                flex-direction: column;
             }
         }
         
-        .filter-select-wrapper {
-            position: relative;
+        .filter-group {
             flex: 1;
+            position: relative;
         }
         
         .filter-select {
             width: 100%;
-            padding: 12px 40px 12px 15px;
+            padding: 0.9rem 1rem 0.9rem 2.5rem;
             border: 2px solid #eef2f7;
             background: white;
             font-family: 'Cairo';
             font-size: 0.95rem;
-            color: #2c3e50;
-            border-radius: 10px;
+            color: var(--dark);
+            border-radius: 12px;
             font-weight: 500;
             cursor: pointer;
+            transition: var(--transition);
+            appearance: none;
+        }
+        
+        .filter-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10, 61, 98, 0.1);
+            outline: none;
         }
         
         .filter-icon {
             position: absolute;
-            left: 15px;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: #0a3d62;
+            color: var(--primary);
+            pointer-events: none;
         }
         
-        .search-wrapper {
-            position: relative;
+        .search-group {
             flex: 2;
+            position: relative;
         }
         
         .search-input {
             width: 100%;
-            padding: 12px 45px 12px 15px;
+            padding: 0.9rem 1rem 0.9rem 3rem;
             border: 2px solid #eef2f7;
             background: white;
             font-family: 'Cairo';
             font-size: 0.95rem;
-            color: #2c3e50;
-            border-radius: 10px;
+            color: var(--dark);
+            border-radius: 12px;
+            transition: var(--transition);
         }
         
-        .search-btn {
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10, 61, 98, 0.1);
+            outline: none;
+        }
+        
+        .search-icon {
             position: absolute;
-            left: 10px;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            background: #0a3d62;
-            color: white;
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            color: var(--primary);
         }
         
         /* المحتوى الرئيسي */
         .main-content {
-            margin-top: 130px;
-            padding: 0 15px 20px;
+            margin-top: 160px;
+            padding: 0 1.5rem 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: var(--transition);
         }
         
-        .section-header {
+        .content-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 2rem;
+            padding: 0 0.5rem;
         }
         
-        .section-title {
-            font-size: 1.4rem;
-            color: #0a3d62;
-            font-weight: 800;
+        .content-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
         
-        .restaurants-count {
-            background: #eef2f7;
-            color: #2c3e50;
-            padding: 5px 15px;
-            border-radius: 20px;
+        .restaurants-counter {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
             font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 700;
         }
         
         /* شبكة المطاعم */
         .restaurants-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
         }
         
-        @media (min-width: 480px) {
+        @media (max-width: 768px) {
             .restaurants-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (min-width: 768px) {
-            .restaurants-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
         }
         
         /* بطاقة المطعم */
         .restaurant-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: transform 0.3s;
-            border: 1px solid #f0f0f0;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
         
         .restaurant-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
         }
         
         .restaurant-image {
-            height: 160px;
+            height: 180px;
             width: 100%;
             overflow: hidden;
             position: relative;
@@ -425,20 +845,33 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
+            transition: transform 0.5s ease;
         }
         
         .restaurant-card:hover .restaurant-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
         
-        .restaurant-image-overlay {
+        .restaurant-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0.1));
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+        }
+        
+        .restaurant-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            z-index: 2;
         }
         
         .restaurant-header {
@@ -446,15 +879,15 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 15px;
+            padding: 1.2rem;
             color: white;
             z-index: 2;
         }
         
         .restaurant-name {
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin-bottom: 5px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
         }
         
         .restaurant-meta {
@@ -465,19 +898,22 @@
         }
         
         .restaurant-rating {
-            color: #f9c74f;
-            font-weight: 600;
+            color: var(--accent);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
         
         .restaurant-info {
-            padding: 15px;
+            padding: 1.5rem;
         }
         
         .restaurant-description {
-            color: #666;
+            color: var(--gray);
             font-size: 0.9rem;
-            margin-bottom: 15px;
-            line-height: 1.4;
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
             height: 42px;
             overflow: hidden;
             display: -webkit-box;
@@ -485,36 +921,62 @@
             -webkit-box-orient: vertical;
         }
         
-        .view-restaurant-btn {
-            background: #0a3d62;
+        .view-menu-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
             font-family: 'Cairo';
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            transition: background 0.3s;
+            gap: 0.5rem;
+            transition: var(--transition);
         }
         
-        .view-restaurant-btn:hover {
-            background: #1e5f8a;
+        .view-menu-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 61, 98, 0.2);
         }
         
-        /* صفحة تفاصيل المطعم */
+        /* رسالة عدم وجود نتائج */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .no-results-icon {
+            font-size: 4rem;
+            color: #e0e0e0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .no-results h3 {
+            color: var(--gray);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* ====== صفحة تفاصيل المطعم ====== */
         #restaurantDetailPage {
-            padding-top: 70px;
-            padding-bottom: 80px;
+            display: none;
+            min-height: 100vh;
+            background: var(--light);
+            padding-bottom: 100px;
         }
         
         .restaurant-detail-header {
+            height: 300px;
             position: relative;
-            height: 250px;
             overflow: hidden;
         }
         
@@ -530,470 +992,686 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 50%);
         }
         
-        .restaurant-detail-content {
-            position: relative;
-            z-index: 2;
-            padding: 30px 20px;
+        .restaurant-detail-back {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--dark);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+        }
+        
+        .restaurant-detail-back:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+        
+        .restaurant-detail-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
             color: white;
+            z-index: 2;
         }
         
-        .restaurant-detail-title {
-            font-size: 1.8rem;
+        .restaurant-detail-name {
+            font-size: 2.2rem;
             font-weight: 900;
-            margin-bottom: 15px;
+            margin-bottom: 0.5rem;
         }
         
         .restaurant-detail-meta {
             display: flex;
+            gap: 2rem;
             flex-wrap: wrap;
-            gap: 10px;
+            margin-bottom: 1rem;
         }
         
-        .meta-item {
+        .restaurant-detail-rating {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 5px;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.85rem;
+            gap: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .restaurant-detail-content {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 0 1.5rem;
         }
         
         .menu-section {
             background: white;
-            margin: 20px;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
         }
         
-        .menu-section-title {
-            font-size: 1.3rem;
-            color: #0a3d62;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
+        .menu-category {
+            margin-bottom: 3rem;
+        }
+        
+        .menu-category-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.8rem;
         }
         
         .menu-items-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-        
-        @media (min-width: 768px) {
-            .menu-items-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
         
         .menu-item-card {
             background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #eef2f7;
-            transition: all 0.3s;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #eee;
+            transition: var(--transition);
+            position: relative;
         }
         
         .menu-item-card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
         }
         
         .menu-item-image {
-            height: 140px;
             width: 100%;
+            height: 150px;
+            border-radius: 8px;
             overflow: hidden;
+            margin-bottom: 1rem;
         }
         
         .menu-item-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
         }
         
-        .menu-item-card:hover .menu-item-image img {
-            transform: scale(1.05);
+        .menu-item-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
         }
         
-        .menu-item-content {
-            padding: 15px;
+        .menu-item-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
         }
         
-        .menu-item-header {
+        .menu-item-footer {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-        
-        .menu-item-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #2c3e50;
-            flex: 1;
+            align-items: center;
         }
         
         .menu-item-price {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #e74c3c;
-            margin-left: 10px;
-        }
-        
-        .menu-item-desc {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            line-height: 1.4;
-            height: 40px;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--primary);
         }
         
         .add-to-cart-btn {
-            background: #2ecc71;
-            color: white;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--dark);
             border: none;
-            padding: 10px 15px;
+            padding: 0.6rem 1.2rem;
             border-radius: 8px;
             font-family: 'Cairo';
-            font-weight: 600;
+            font-weight: 800;
             cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            transition: background 0.3s;
+            gap: 0.5rem;
+            transition: var(--transition);
         }
         
         .add-to-cart-btn:hover {
-            background: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(249, 199, 79, 0.3);
         }
         
-        /* سلة الطلبات العائمة */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gray-light);
+            border-radius: 8px;
+            padding: 0.3rem;
+        }
+        
+        .quantity-btn {
+            background: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 900;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .quantity-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .quantity-value {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 800;
+        }
+        
+        /* ====== سلة الطلبات ====== */
         .cart-fab {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #0a3d62;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             border: none;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(10, 61, 98, 0.3);
             cursor: pointer;
             z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .cart-fab:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(10, 61, 98, 0.4);
+        }
+        
+        .fab-icon {
+            font-size: 1.5rem;
+            position: relative;
         }
         
         .fab-badge {
             position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #e74c3c;
+            top: -8px;
+            right: -8px;
+            background: var(--danger);
             color: white;
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             font-size: 0.75rem;
-            font-weight: 700;
+            font-weight: 800;
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 2px solid white;
         }
         
-        /* السلة المنبثقة */
-        .cart-bottom-sheet {
+        .fab-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 0.2rem;
+        }
+        
+        /* ====== السلة المنبثقة ====== */
+        .cart-sheet {
             position: fixed;
             bottom: -100%;
             left: 0;
             width: 100%;
-            height: 70vh;
+            height: 85vh;
             background: white;
-            border-radius: 20px 20px 0 0;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.15);
+            border-radius: 25px 25px 0 0;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
             z-index: 1001;
-            transition: bottom 0.3s;
+            transition: bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
-        .cart-bottom-sheet.active {
+        .cart-sheet.active {
             bottom: 0;
         }
         
-        .cart-sheet-header {
-            padding: 20px;
+        .cart-header {
+            padding: 1.5rem;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 25px 25px 0 0;
         }
         
-        .cart-header-content h3 {
-            font-size: 1.2rem;
-            color: #0a3d62;
+        .cart-title {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.8rem;
+            font-size: 1.3rem;
+            font-weight: 800;
         }
         
-        .close-bottom-sheet {
-            background: none;
+        .cart-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        
+        .close-cart {
+            background: rgba(255, 255, 255, 0.15);
             border: none;
-            font-size: 1.5rem;
-            color: #666;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            color: white;
+            transition: var(--transition);
         }
         
-        .cart-sheet-body {
-            height: calc(100% - 70px);
+        .close-cart:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(90deg);
+        }
+        
+        .cart-body {
+            height: calc(100% - 75px);
             overflow-y: auto;
-            padding: 20px;
+            padding: 0 1.5rem;
         }
         
         .cart-items-container {
-            margin-bottom: 20px;
-        }
-        
-        .empty-cart-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #999;
-        }
-        
-        .empty-cart-state i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            opacity: 0.5;
+            padding: 1.5rem 0;
         }
         
         .cart-item {
             display: flex;
             align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #f0f0f0;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            animation: fadeInUp 0.3s ease;
         }
         
-        .cart-item-details {
+        .cart-item-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cart-item-info {
             flex: 1;
         }
         
         .cart-item-name {
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        .cart-item-restaurant {
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 5px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
         }
         
         .cart-item-price {
-            color: #e74c3c;
-            font-weight: 600;
+            color: var(--primary);
+            font-weight: 900;
+            font-size: 1.1rem;
         }
         
         .cart-item-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.5rem;
         }
         
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .quantity-btn {
-            background: #f0f7ff;
-            border: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: #0a3d62;
-            font-weight: bold;
+        .cart-item-total {
+            font-weight: 900;
+            color: var(--dark);
+            min-width: 60px;
+            text-align: left;
         }
         
         .remove-item-btn {
-            background: #ffeaea;
-            color: #e74c3c;
+            background: var(--gray-light);
             border: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 5px;
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            color: var(--danger);
+            transition: var(--transition);
+        }
+        
+        .remove-item-btn:hover {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .cart-empty {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--gray);
+        }
+        
+        .cart-empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
         }
         
         .cart-summary {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
+            padding: 1.5rem;
+            background: var(--gray-light);
+            border-radius: 12px;
+            margin: 2rem 0;
         }
         
-        .cart-summary-row {
+        .summary-row {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
+            margin-bottom: 1rem;
         }
         
-        .cart-final-total {
-            border-top: 1px solid #ddd;
-            margin-top: 8px;
-            padding-top: 12px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #0a3d62;
-        }
-        
-        .cart-actions {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .clear-cart-btn {
-            background: #f8f9fa;
-            border: 2px solid #e74c3c;
-            color: #e74c3c;
-            padding: 12px;
-            border-radius: 8px;
-            font-family: 'Cairo';
-            font-weight: 600;
-            cursor: pointer;
+        .summary-total {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            border-top: 2px solid #ddd;
+            padding-top: 1rem;
+            margin-top: 1rem;
         }
         
         .checkout-btn {
-            background: #f9c74f;
-            color: #2c3e50;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--dark);
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 1.2rem;
+            border-radius: 12px;
             font-family: 'Cairo';
-            font-weight: 700;
+            font-weight: 900;
+            font-size: 1.1rem;
             cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            transition: var(--transition);
+            margin-top: 1rem;
         }
         
-        .checkout-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(249, 199, 79, 0.3);
         }
         
-        /* رسالة عدم وجود نتائج */
-        .no-results {
-            text-align: center;
-            padding: 50px 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            margin-top: 20px;
-            display: none;
-        }
-        
-        .no-results i {
-            font-size: 3rem;
-            color: #ddd;
-            margin-bottom: 15px;
-        }
-        
-        /* الفوتر */
-        .footer {
-            background: #0a3d62;
+        /* ====== الفوتر ====== */
+        .app-footer {
+            background: var(--primary);
             color: white;
-            padding: 30px 20px 20px;
-            margin-top: 40px;
+            padding: 4rem 1.5rem 2rem;
+            margin-top: 4rem;
         }
         
         .footer-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        @media (min-width: 768px) {
-            .footer-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
         }
         
         .footer-section h4 {
-            margin-bottom: 15px;
-            color: #f9c74f;
-            font-size: 1.1rem;
-        }
-        
-        .contact-link {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: white;
+            gap: 0.8rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            margin-bottom: 10px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
         }
         
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
+            padding-top: 2rem;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .copyright {
-            margin-bottom: 15px;
-            opacity: 0.8;
+            opacity: 0.7;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 0.9rem;
+            gap: 0.5rem;
         }
         
-        /* الإشعارات */
+        /* ====== الإشعارات ====== */
         .notification {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #2ecc71;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--success);
             color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.3);
             z-index: 10000;
-            font-weight: 600;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
             animation: slideInRight 0.3s ease;
         }
         
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .notification.error {
+            background: var(--danger);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.3);
         }
         
-        @keyframes slideOutRight {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
+        .notification.warning {
+            background: var(--accent);
+            color: var(--dark);
+            box-shadow: 0 10px 25px rgba(249, 199, 79, 0.3);
+        }
+        
+        /* ====== الصفحة المتحركة ====== */
+        .page-transition {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* ====== تأثيرات إضافية ====== */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+            border-radius: 8px;
+        }
+        
+        .skeleton-text {
+            height: 1em;
+            margin-bottom: 0.5em;
+        }
+        
+        .skeleton-image {
+            height: 200px;
+            width: 100%;
+        }
+        
+        /* ====== التجاوب مع الهاتف ====== */
+        @media (max-width: 768px) {
+            .restaurant-detail-name {
+                font-size: 1.8rem;
+            }
+            
+            .menu-items-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ====== حقل العدد في السلة ====== */
+        .cart-quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* ====== عنصر السلة مع تأثيرات ====== */
+        .cart-item-enter {
+            animation: slideInRight 0.3s ease;
+        }
+        
+        .cart-item-exit {
+            animation: slideInLeft 0.3s ease reverse;
+        }
+        
+        /* ====== وضعية الطلب ====== */
+        .order-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .order-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .order-status.preparing {
+            background: #cce5ff;
+            color: #004085;
+        }
+        
+        .order-status.delivering {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .order-status.delivered {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        /* ====== رسائل التوعية ====== */
+        .info-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .info-banner i {
+            font-size: 1.5rem;
+            color: var(--accent);
         }
     </style>
 </head>
@@ -1004,79 +1682,208 @@
             <div class="loader-icon">
                 <i class="fas fa-moon"></i>
             </div>
-            <p>جاري تحضير وجبات رمضان...</p>
+            <p class="loader-text">جاري تحضير تجربة رمضان الخاصة بك...</p>
+            <div class="loading-progress">
+                <div class="loading-bar" id="loadingBar"></div>
+            </div>
         </div>
     </div>
 
     <!-- الصفحة الرئيسية التسويقية -->
-    <div id="landingPage" class="page active">
-        <div class="landing-content">
-            <div class="ramadan-badge">
-                <i class="fas fa-star"></i> رمضان كريم 2024
+    <div id="landingPage">
+        <!-- النجوم المتحركة -->
+        <div class="stars" id="stars"></div>
+        
+        <!-- الهيدر -->
+        <header class="landing-header" id="landingHeader">
+            <div class="landing-logo">
+                <div class="landing-logo-icon">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="landing-logo-text">
+                    <h1>رمضان كريم</h1>
+                    <p>أول وأكبر منصة لتوصيل وجبات رمضان</p>
+                </div>
             </div>
             
-            <h1 class="landing-title">
-                وجبات رمضان المميزة<br>مباشرة إلى منزلك
-            </h1>
-            
-            <p class="landing-subtitle">
-                نقدم لك تشكيلة مميزة من وجبات الإفطار والسحور المطبوخة بأيدي أمهر الطهاة
-                من أفضل المطاعم في أبوظبي، مع خدمة توصيل سريعة وآمنة
-            </p>
+            <button class="landing-cta" id="landingCtaBtn">
+                <span>ابدأ الطلب الآن</span>
+                <i class="fas fa-arrow-left"></i>
+            </button>
+        </header>
+
+        <!-- المحتوى الرئيسي -->
+        <section class="landing-hero">
+            <div class="hero-content">
+                <div class="hero-badges">
+                    <div class="hero-badge">
+                        <i class="fas fa-star"></i>
+                        <span>⭐ التقييم 4.9/5</span>
+                    </div>
+                    <div class="hero-badge">
+                        <i class="fas fa-bolt"></i>
+                        <span>⚡ توصيل خلال 30 دقيقة</span>
+                    </div>
+                    <div class="hero-badge">
+                        <i class="fas fa-tags"></i>
+                        <span>🎁 عروض حصرية</span>
+                    </div>
+                </div>
+                
+                <h1 class="hero-title">
+                    استمتع بأشهى وجبات رمضان<br>مباشرة إلى منزلك
+                </h1>
+                
+                <p class="hero-subtitle">
+                    نقدم لك تشكيلة مميزة من أفضل المطاعم في أبوظبي، مع خدمة توصيل سريعة وآمنة
+                    وضمان جودة الطعام. اطلب الآن واستمبتجربة رمضان لا تُنسى!
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">مطعم شريك</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">عميل سعيد</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label">رضا العملاء</span>
+                    </div>
+                </div>
+                
+                <div class="hero-cta">
+                    <button class="cta-primary" id="exploreRestaurantsBtn">
+                        <i class="fas fa-utensils"></i>
+                        <span>استعرض المطاعم الآن</span>
+                    </button>
+                    
+                    <button class="cta-secondary" id="howItWorksBtn">
+                        <i class="fas fa-play-circle"></i>
+                        <span>كيف تعمل الخدمة؟</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ميزات الخدمة -->
+        <section class="features-section">
+            <h2 class="section-title">لماذا تختار رمضان كريم؟</h2>
+            <p class="section-subtitle">نقدم لك تجربة فريدة ومميزة لتوصيل وجبات رمضان</p>
             
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-utensils"></i>
+                        <i class="fas fa-crown"></i>
                     </div>
-                    <h3 class="feature-title">وجبات مخصصة</h3>
-                    <p>قوائم طعام مصممة خصيصاً لفترة رمضان</p>
+                    <h3 class="feature-title">جودة مضمونة</h3>
+                    <p class="feature-description">
+                        نتعامل فقط مع أفضل المطاعم المرخصة والمعتمدة في أبوظبي، 
+                        لضمان تقديم وجبات عالية الجودة تليق بشهر رمضان المبارك.
+                    </p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-shipping-fast"></i>
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <h3 class="feature-title">توصيل سريع</h3>
-                    <p>توصيل خلال 25-45 دقيقة إلى جميع أنحاء أبوظبي</p>
+                    <h3 class="feature-title">توصيل فائق السرعة</h3>
+                    <p class="feature-description">
+                        شبكة توصيل متطورة تضمن وصول وجباتك خلال 25-45 دقيقة كحد أقصى، 
+                        مع تتبع مباشر لطلبك خطوة بخطوة.
+                    </p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-tags"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3 class="feature-title">عروض خاصة</h3>
-                    <p>خصومات وعروض حصرية طوال شهر رمضان</p>
+                    <h3 class="feature-title">سلامة وأمان</h3>
+                    <p class="feature-description">
+                        جميع وجباتنا تُحضر وتُعبأ وفق أعلى معايير السلامة الصحية، 
+                        مع تأمين كامل خلال عملية التوصيل.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="feature-title">عروض حصرية</h3>
+                    <p class="feature-description">
+                        استمتع بخصومات وعروض خاصة لا تتوفر في أي مكان آخر، 
+                        مع برنامج ولاء يميزك بكل طلب جديد.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">دعم على مدار الساعة</h3>
+                    <p class="feature-description">
+                        فريق خدمة عملاء متاح 24/7 خلال شهر رمضان للإجابة على استفساراتك 
+                        وحل أي مشكلة تواجهك خلال 5 دقائق.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="feature-title">حجز مسبق</h3>
+                    <p class="feature-description">
+                        احجز وجباتك مسبقاً لتضمن وصولها في الوقت المحدد، 
+                        مع إمكانية التعديل والإلغاء بمرونة تامة.
+                    </p>
                 </div>
             </div>
-            
-            <button class="cta-button" id="exploreRestaurantsBtn">
-                <span>استعرض المطاعم</span>
-                <i class="fas fa-arrow-left"></i>
-            </button>
-        </div>
+        </section>
+
+        <!-- دعوة للعمل -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title">جاهز لبدء تجربة رمضان الخاصة بك؟</h2>
+                <p class="cta-subtitle">
+                    انضم إلى أكثر من 10,000 عميل سعيد اختاروا رمضان كريم 
+                    لتوصيل وجباتهم خلال شهر رمضان المبارك
+                </p>
+                
+                <button class="cta-primary" id="finalCtaBtn">
+                    <i class="fas fa-rocket"></i>
+                    <span>ابدأ الطلب الآن - مجاناً!</span>
+                </button>
+                
+                <p style="margin-top: 2rem; opacity: 0.8; font-size: 0.9rem;">
+                    ⚡ لا تحتاج إلى تسجيل - ابدأ بالطلب مباشرة!
+                </p>
+            </div>
+        </section>
     </div>
 
     <!-- صفحة المطاعم -->
-    <div id="restaurantsPage" class="page">
-        <header class="header">
-            <div class="container">
-                <div class="header-content">
-                    <button class="back-button" id="backToLandingBtn">
+    <div id="restaurantsPage">
+        <!-- الهيدر -->
+        <header class="app-header" id="appHeader">
+            <div class="header-content">
+                <div class="app-logo">
+                    <div class="app-logo-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="app-logo-text">
+                        <h1>رمضان كريم</h1>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="back-to-home" id="backToHomeBtn">
                         <i class="fas fa-home"></i>
-                        الرئيسية
+                        الصفحة الرئيسية
                     </button>
                     
-                    <div class="logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-moon"></i>
-                        </div>
-                        <div class="logo-text">
-                            <h1>رمضان كريم</h1>
-                        </div>
-                    </div>
-                    
-                    <button class="cart-btn" id="headerCartBtn">
+                    <button class="cart-btn-header" id="headerCartBtn">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-badge" id="headerCartBadge">0</span>
                     </button>
@@ -1084,445 +1891,394 @@
             </div>
         </header>
 
-        <section class="filters">
-            <div class="container">
+        <!-- الفلتر -->
+        <section class="filters-section" id="filtersSection">
+            <div class="filters-container">
                 <div class="filters-row">
-                    <div class="filter-select-wrapper">
+                    <div class="filter-group">
                         <i class="fas fa-map-marker-alt filter-icon"></i>
                         <select id="cityFilter" class="filter-select">
-                            <option value="all">📍 جميع المناطق</option>
-                            <option value="أبوظبي">أبوظبي</option>
-                            <option value="المصفح">المصفح</option>
-                            <option value="الشهامة">الشهامة</option>
-                            <option value="بني ياس">بني ياس</option>
-                            <option value="خليفة">خليفة</option>
+                            <option value="all">📍 جميع مناطق أبوظبي</option>
+                            <option value="أبوظبي">🏙️ أبوظبي المدينة</option>
+                            <option value="المصفح">🏘️ المصفح</option>
+                            <option value="الشهامة">🏡 الشهامة</option>
+                            <option value="بني ياس">🏢 بني ياس</option>
+                            <option value="خليفة">🏬 خليفة</option>
+                            <option value="الزاهية">🏠 الزاهية</option>
+                            <option value="المرفأ">⚓ المرفأ</option>
                         </select>
                     </div>
                     
-                    <div class="search-wrapper">
-                        <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن مطعم أو وجبة...">
-                        <button id="searchBtn" class="search-btn">
-                            <i class="fas fa-search"></i>
-                        </button>
+                    <div class="search-group">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" class="search-input" 
+                               placeholder="🔍 ابحث عن مطعم، وجبة، أو نوع طعام...">
                     </div>
                 </div>
             </div>
         </section>
 
-        <main class="main-content">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">
-                        <i class="fas fa-utensils"></i>
-                        المطاعم المتاحة
-                    </h2>
-                    <div class="restaurants-count" id="restaurantsCount">
-                        جاري التحميل...
-                    </div>
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content" id="mainContent">
+            <div class="content-header">
+                <h2 class="content-title">
+                    <i class="fas fa-utensils"></i>
+                    أفضل المطاعم للتوصيل
+                </h2>
+                <div class="restaurants-counter" id="restaurantsCount">
+                    0 مطعم
                 </div>
+            </div>
 
-                <div id="restaurantsContainer" class="restaurants-grid">
-                    <!-- المطاعم تُعرض هنا -->
-                </div>
+            <div id="restaurantsContainer" class="restaurants-grid">
+                <!-- المطاعم تُعرض هنا -->
+            </div>
 
-                <div id="noResults" class="no-results">
+            <div id="noResults" class="no-results">
+                <div class="no-results-icon">
                     <i class="fas fa-search"></i>
-                    <h3>لا توجد نتائج</h3>
-                    <p>جرب البحث بكلمات أخرى أو اختر منطقة أخرى</p>
                 </div>
+                <h3>لم نجد ما تبحث عنه</h3>
+                <p>جرب تغيير كلمات البحث أو اختر منطقة مختلفة</p>
             </div>
         </main>
 
-        <!-- سلة الطلبات -->
+        <!-- سلة الطلبات العائمة -->
         <button class="cart-fab" id="cartFab">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="fab-badge" id="fabBadge">0</span>
+            <div class="fab-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="fab-badge" id="fabBadge">0</span>
+            </div>
+            <span class="fab-label">السلة</span>
         </button>
 
         <!-- السلة المنبثقة -->
-        <div class="cart-bottom-sheet" id="cartBottomSheet">
-            <div class="cart-sheet-header">
-                <div class="cart-header-content">
-                    <h3><i class="fas fa-shopping-cart"></i> سلة الطلبات</h3>
-                    <span class="cart-items-count" id="mobileCartCount">0 عنصر</span>
+        <div class="cart-sheet" id="cartSheet">
+            <div class="cart-header">
+                <div class="cart-title">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>سلة طلبات رمضان</span>
+                    <span class="cart-count" id="cartCount">0 عنصر</span>
                 </div>
-                <button class="close-bottom-sheet" id="closeBottomSheet">
+                <button class="close-cart" id="closeCartBtn">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             
-            <div class="cart-sheet-body">
-                <div class="cart-items-container" id="mobileCartItems">
-                    <div class="empty-cart-state">
-                        <i class="fas fa-shopping-basket"></i>
-                        <p>السلة فارغة</p>
-                        <small>أضف بعض الوجبات من المطاعم</small>
-                    </div>
+            <div class="cart-body">
+                <!-- محتويات السلة -->
+                <div id="cartItemsContainer" class="cart-items-container">
+                    <!-- العناصر تُعرض هنا -->
                 </div>
                 
-                <div class="cart-summary" id="cartSummary">
-                    <div class="cart-summary-row">
-                        <span>المجموع:</span>
-                        <span id="mobileCartTotal">0 د.إ</span>
-                    </div>
-                    <div class="cart-summary-row">
-                        <span>رسوم التوصيل:</span>
-                        <span>5 د.إ</span>
-                    </div>
-                    <div class="cart-summary-row cart-final-total">
-                        <span>الإجمالي النهائي:</span>
-                        <span id="mobileFinalTotal">5 د.إ</span>
-                    </div>
+                <!-- ملخص السلة -->
+                <div class="cart-summary" id="cartSummary" style="display: none;">
+                    <!-- ملخص السلة يُعرض هنا -->
                 </div>
                 
-                <div class="cart-actions">
-                    <button class="clear-cart-btn" id="mobileClearCart">
-                        <i class="fas fa-trash"></i> تفريغ
-                    </button>
-                    <button class="checkout-btn" id="mobileCheckout" disabled>
-                        <i class="fas fa-check-circle"></i> إتمام الطلب
-                    </button>
+                <!-- سلة فارغة -->
+                <div id="cartEmpty" class="cart-empty">
+                    <div class="cart-empty-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>سلة التسوق فارغة</h3>
+                    <p>أضف بعض الوجبات اللذيذة من قائمة المطاعم</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- صفحة تفاصيل المطعم -->
-    <div id="restaurantDetailPage" class="page">
-        <header class="header">
-            <div class="container">
-                <div class="header-content">
-                    <button class="back-button" id="backToRestaurantsBtn">
-                        <i class="fas fa-arrow-right"></i>
-                        العودة
-                    </button>
-                    
-                    <div class="logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-utensils"></i>
-                        </div>
-                        <div class="logo-text">
-                            <h1 id="detailPageTitle">المطعم</h1>
-                        </div>
-                    </div>
-                    
-                    <button class="cart-btn" id="detailCartBtn">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-badge" id="detailCartBadge">0</span>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <div class="restaurant-detail-header">
-            <img id="detailRestaurantImage" src="" alt="" class="restaurant-detail-image">
-            <div class="restaurant-detail-overlay"></div>
-            <div class="restaurant-detail-content">
-                <div class="container">
-                    <h1 class="restaurant-detail-title" id="detailRestaurantName">اسم المطعم</h1>
-                    <div class="restaurant-detail-meta">
-                        <div class="meta-item">
-                            <i class="fas fa-star"></i>
-                            <span id="detailRating">0.0</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-clock"></i>
-                            <span id="detailDeliveryTime">0-0 دقيقة</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span id="detailCity">المدينة</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="menu-section">
-            <div class="container">
-                <h2 class="menu-section-title">
-                    <i class="fas fa-utensils"></i>
-                    قائمة وجبات رمضان
-                </h2>
-                
-                <div id="restaurantMenuItems" class="menu-items-grid">
-                    <!-- الوجبات ستعرض هنا -->
-                </div>
-            </div>
-        </div>
-
-        <!-- سلة الطلبات -->
-        <button class="cart-fab" id="detailCartFab">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="fab-badge" id="detailFabBadge">0</span>
-        </button>
+    <div id="restaurantDetailPage">
+        <!-- سيتم إضافتها ديناميكياً -->
     </div>
 
     <!-- الفوتر -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4><i class="fas fa-headset"></i> الدعم والمساعدة</h4>
-                    <a href="https://wa.me/971501234567" class="contact-link" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>واتساب: 050 123 4567</span>
-                    </a>
-                    <p><i class="fas fa-clock"></i> خدمة 24/7 خلال رمضان</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4><i class="fas fa-shipping-fast"></i> التوصيل</h4>
-                    <p>⚡ توصيل سريع خلال 25-45 دقيقة</p>
-                    <p>📍 جميع مناطق أبوظبي</p>
-                    <p>💰 رسوم التوصيل: 5 دراهم</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4><i class="fas fa-info-circle"></i> عن الخدمة</h4>
-                    <p>نوصل وجبات رمضان المميزة من أفضل المطاعم مباشرة إلى منزلك</p>
+    <footer class="app-footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4><i class="fas fa-info-circle"></i> عن المنصة</h4>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">من نحن</a>
+                    <a href="#" class="footer-link">شروط الاستخدام</a>
+                    <a href="#" class="footer-link">سياسة الخصوصية</a>
+                    <a href="#" class="footer-link">الشروط والأحكام</a>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p class="copyright">
-                    <i class="fas fa-copyright"></i> 2024 رمضان كريم - أبوظبي
-                </p>
+            <div class="footer-section">
+                <h4><i class="fas fa-headset"></i> الدعم</h4>
+                <div class="footer-links">
+                    <a href="tel:025555555" class="footer-link">
+                        <i class="fas fa-phone"></i>
+                        <span>025555555</span>
+                    </a>
+                    <a href="https://wa.me/971501234567" class="footer-link" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>واتساب: 0501234567</span>
+                    </a>
+                    <a href="mailto:support@ramadan-kareem.com" class="footer-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>البريد الإلكتروني</span>
+                    </a>
+                </div>
             </div>
+            
+            <div class="footer-section">
+                <h4><i class="fas fa-share-alt"></i> تابعنا</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-snapchat"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="copyright">
+                <i class="fas fa-copyright"></i> 2024 رمضان كريم - جميع الحقوق محفوظة
+            </p>
         </div>
     </footer>
 
     <script>
-        // بيانات المطاعم مع الصور
+        // ====== بيانات شاملة ======
         const restaurantsData = [
             {
                 id: 1,
-                name: "مطعم ليالي الشام",
+                name: "مطعم ليالي الشام الذهبي",
                 city: "أبوظبي",
-                rating: 4.8,
-                deliveryTime: "25-40 دقيقة",
-                description: "مطعم شامي يقدم أشهى الأطباق العربية التقليدية، متخصص في المأكولات الشامية والمشاوي.",
-                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                menu: [
-                    { 
-                        id: 101, 
-                        name: "فتوش رمضاني", 
-                        price: 35, 
-                        description: "سلطة فتوش بزيت الزيتون والرمان والصنوبر المحمص",
-                        image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 102, 
-                        name: "شوربة عدس", 
-                        price: 25, 
-                        description: "شوربة عدس مع خضار مشكلة وعصير ليمون",
-                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 103, 
-                        name: "كباب حلبي", 
-                        price: 55, 
-                        description: "كباب الحلبي المشوي على الفحم مع بهارات خاصة",
-                        image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 104, 
-                        name: "مشاوي مشكلة", 
-                        price: 75, 
-                        description: "مشاوي لحم ودجاج مع أرز وخضار",
-                        image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    }
-                ]
+                rating: 4.9,
+                deliveryTime: "20-35 دقيقة",
+                minOrder: 40,
+                description: "أشهر المطاعم الشامية في أبوظبي، متخصص في المأكولات التقليدية والمشاوي الطازجة.",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                type: "عربي | شامي",
+                badge: "الأكثر مبيعاً",
+                menu: {
+                    "مقبلات رمضانية": [
+                        { 
+                            id: 101, 
+                            name: "فتوش رمضاني مميز", 
+                            price: 45, 
+                            description: "سلطة فتوش بزيت الزيتون البكر، رمان طازج، وصنوبر محمص",
+                            image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                            popular: true
+                        },
+                        { 
+                            id: 102, 
+                            name: "شوربة عدس بالخضار", 
+                            price: 30, 
+                            description: "شوربة عدس مع خضار مشكلة وعصير ليمون طازج",
+                            image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                            popular: false
+                        },
+                        { 
+                            id: 103, 
+                            name: "تبولة بالبقدونس الطازج", 
+                            price: 35, 
+                            description: "تبولة طازجة مع بقدونس، بصل أخضر، وبرغل ناعم",
+                            image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                            popular: true
+                        }
+                    ],
+                    "أطباق رئيسية": [
+                        { 
+                            id: 104, 
+                            name: "منسف أردني مع لحم ضأن", 
+                            price: 85, 
+                            description: "أرز مع لحم ضأن، لبن، وزبيب مع الصنوبر",
+                            image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                            popular: true
+                        },
+                        { 
+                            id: 105, 
+                            name: "شيش طاووق مشوي", 
+                            price: 65, 
+                            description: "قطع دجاج مشوية مع بهارات مميزة وأرز بسمتي",
+                            image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                            popular: true
+                        }
+                    ],
+                    "حلويات": [
+                        { 
+                            id: 106, 
+                            name: "كنافة نابلسية", 
+                            price: 40, 
+                            description: "كنافة محشوة بالجبنة والقشطة، مع عسل وسكر",
+                            image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                            popular: true
+                        }
+                    ]
+                }
             },
             {
                 id: 2,
-                name: "مطعم النخيل الإماراتي",
+                name: "مطعم النخيل الإماراتي الفاخر",
                 city: "أبوظبي",
-                rating: 4.6,
+                rating: 4.8,
                 deliveryTime: "30-45 دقيقة",
-                description: "مطعم إماراتي أصيل يقدم أشهى الأطباق الإماراتية التقليدية والحديثة.",
-                image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                menu: [
-                    { 
-                        id: 201, 
-                        name: "هريس لحم", 
-                        price: 50, 
-                        description: "هريس لحم ضأن مع قمح وزيت الذرة",
-                        image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 202, 
-                        name: "مجبوس دجاج", 
-                        price: 45, 
-                        description: "أرز مجبوس مع دجاج وتوابل إماراتية",
-                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 203, 
-                        name: "ثريد لحم", 
-                        price: 60, 
-                        description: "ثريد لحم مع خبز رقاق ومرق خاص",
-                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 204, 
-                        name: "لقيمات", 
-                        price: 20, 
-                        description: "لقيمات بالعسل والسمسم والهيل",
-                        image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    }
-                ]
+                minOrder: 50,
+                description: "يقدم أشهى الأطباق الإماراتية التقليدية بأسلوب عصري واحترافي.",
+                image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                type: "إماراتي | أصيل",
+                badge: "توصيل مجاني",
+                menu: {
+                    "مقبلات": [
+                        { 
+                            id: 201, 
+                            name: "هريس لحم ضأن مميز", 
+                            price: 60, 
+                            description: "هريس لحم ضأن مع قمح وزيت الذرة والبهارات الإماراتية",
+                            image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                            popular: true
+                        }
+                    ],
+                    "أطباق رئيسية": [
+                        { 
+                            id: 202, 
+                            name: "مجبوس دجاج إماراتي", 
+                            price: 70, 
+                            description: "أرز مجبوس مع دجاج كامل ومجموعة بهارات إماراتية",
+                            image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                            popular: true
+                        }
+                    ]
+                }
             },
             {
                 id: 3,
-                name: "مطعم بحر الخير",
-                city: "المصفح",
+                name: "مطعم المأكولات البحرية الفاخر",
+                city: "المرفأ",
                 rating: 4.7,
                 deliveryTime: "35-50 دقيقة",
-                description: "مطعم بحري متخصص في المأكولات البحرية الطازجة والمشوية على الفحم.",
-                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                menu: [
-                    { 
-                        id: 301, 
-                        name: "سمك ناجل مشوي", 
-                        price: 85, 
-                        description: "سمك ناجل طازج مشوي على الفحم",
-                        image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 302, 
-                        name: "كباب السمك", 
-                        price: 45, 
-                        description: "كباب سمك مع بهارات خاصة",
-                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 303, 
-                        name: "مقبلات بحرية", 
-                        price: 65, 
-                        description: "مقبلات متنوعة من المأكولات البحرية",
-                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    }
-                ]
-            },
-            {
-                id: 4,
-                name: "مطعم المنارة التركي",
-                city: "الشهامة",
-                rating: 4.5,
-                deliveryTime: "20-35 دقيقة",
-                description: "مطعم تركي يقدم أشهى المأكولات التركية من كبدة وشاورما ومعجنات.",
-                image: "https://images.unsplash.com/photo-1551503759-13c2d45c54a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                menu: [
-                    { 
-                        id: 401, 
-                        name: "كبدة تركية", 
-                        price: 40, 
-                        description: "كبدة تركية مشوية مع بصل وفلفل",
-                        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 402, 
-                        name: "شاورما لحم", 
-                        price: 35, 
-                        description: "شاورما لحم تركية مع خبز وثومية",
-                        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 403, 
-                        name: "معجنات تركية", 
-                        price: 45, 
-                        description: "معجنات متنوعة بالجبن واللحوم",
-                        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    }
-                ]
-            },
-            {
-                id: 5,
-                name: "مطعم القصيم السعودي",
-                city: "بني ياس",
-                rating: 4.4,
-                deliveryTime: "40-55 دقيقة",
-                description: "مطعم سعودي يقدم أشهى أطباق المطبخ السعودي من كبسة ومندي ومرقوق.",
-                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                menu: [
-                    { 
-                        id: 501, 
-                        name: "كبسة دجاج", 
-                        price: 55, 
-                        description: "أرز كبسة مع دجاج طازج وتوابل سعودية",
-                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 502, 
-                        name: "مندي لحم", 
-                        price: 70, 
-                        description: "لحم ضأن مع أرز مندي مطبوخ في التنور",
-                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 503, 
-                        name: "مرقوق لحم", 
-                        price: 50, 
-                        description: "مرقوق لحم مع خبز رقاق ومرق غني",
-                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    }
-                ]
-            },
-            {
-                id: 6,
-                name: "مطعم سندريلا",
-                city: "خليفة",
-                rating: 4.9,
-                deliveryTime: "25-40 دقيقة",
-                description: "أشهر مطعم للوجبات السريعة في أبوظبي، يقدم برجر ودجاج وبيتزا بأعلى جودة.",
-                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                menu: [
-                    { 
-                        id: 601, 
-                        name: "برجر لحم خاص", 
-                        price: 45, 
-                        description: "برجر لحم مع جبنة وصلصة خاصة وخضار طازجة",
-                        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 602, 
-                        name: "دجاج كرسبي", 
-                        price: 40, 
-                        description: "دجاج مقرمش مع صلصات متنوعة",
-                        image: "https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    },
-                    { 
-                        id: 603, 
-                        name: "بيتزا كبيرة", 
-                        price: 65, 
-                        description: "بيتزا كبيرة مع جميع الإضافات وجبنة موزاريلا",
-                        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    }
-                ]
+                minOrder: 60,
+                description: "أفضل المأكولات البحرية الطازجة من أسواق أبوظبي مباشرة.",
+                image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                type: "مأكولات بحرية",
+                badge: "طازج يومياً",
+                menu: {
+                    "مأكولات بحرية": [
+                        { 
+                            id: 301, 
+                            name: "سمك هامور مشوي", 
+                            price: 120, 
+                            description: "سمك هامور طازج مشوي مع أرز وطحينة وخضار",
+                            image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                            popular: true
+                        }
+                    ]
+                }
             }
         ];
 
-        // المتغيرات العامة
+        // ====== متغيرات التطبيق ======
         let cart = JSON.parse(localStorage.getItem('ramadanCart')) || [];
         let currentRestaurants = [...restaurantsData];
         let currentRestaurant = null;
+        let isScrolled = false;
 
-        // تهيئة الصفحة
+        // ====== تهيئة التطبيق ======
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                document.getElementById('pageLoader').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('pageLoader').style.display = 'none';
-                }, 500);
-            }, 1500);
+            initLoader();
+            setupEventListeners();
+            initScrollEffects();
+            updateCart();
+        });
+
+        // ====== وظائف التحميل ======
+        function initLoader() {
+            let progress = 0;
+            const loadingBar = document.getElementById('loadingBar');
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 20;
+                if (progress > 100) progress = 100;
+                loadingBar.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        document.getElementById('pageLoader').style.opacity = '0';
+                        setTimeout(() => {
+                            document.getElementById('pageLoader').style.display = 'none';
+                            initStars();
+                        }, 500);
+                    }, 500);
+                }
+            }, 200);
+        }
+
+        function initStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 3 + 1;
+                const opacity = Math.random() * 0.5 + 0.3;
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const delay = Math.random() * 3;
+                const duration = Math.random() * 2 + 1;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.opacity = opacity;
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.animationDelay = `${delay}s`;
+                star.style.animationDuration = `${duration}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // ====== وظائف التصفح ======
+        function showLandingPage() {
+            document.getElementById('landingPage').style.display = 'block';
+            document.getElementById('restaurantsPage').style.display = 'none';
+            document.getElementById('restaurantDetailPage').style.display = 'none';
+            document.body.style.background = 'linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%)';
+            document.body.classList.add('page-transition');
+        }
+
+        function showRestaurantsPage() {
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('restaurantsPage').style.display = 'block';
+            document.getElementById('restaurantDetailPage').style.display = 'none';
+            document.body.style.background = '#fef9f3';
+            document.body.classList.add('page-transition');
             
             displayRestaurants(currentRestaurants);
             updateCart();
-            setupEventListeners();
-        });
+        }
 
-        // عرض المطاعم مع الصور
+        function showRestaurantDetail(restaurantId) {
+            currentRestaurant = restaurantsData.find(r => r.id === restaurantId);
+            if (!currentRestaurant) return;
+            
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('restaurantsPage').style.display = 'none';
+            document.getElementById('restaurantDetailPage').style.display = 'block';
+            document.body.style.background = '#fef9f3';
+            document.body.classList.add('page-transition');
+            
+            displayRestaurantDetail(currentRestaurant);
+            updateCart();
+        }
+
+        // ====== عرض المطاعم ======
         function displayRestaurants(restaurants) {
             const container = document.getElementById('restaurantsContainer');
             const noResults = document.getElementById('noResults');
@@ -1537,30 +2293,43 @@
             }
             
             noResults.style.display = 'none';
-            countElement.textContent = `${restaurants.length} مطعم`;
+            countElement.textContent = `${restaurants.length} مطعم${restaurants.length > 1 ? 'ات' : ''}`;
             
-            restaurants.forEach(restaurant => {
+            restaurants.forEach((restaurant, index) => {
                 const card = document.createElement('div');
                 card.className = 'restaurant-card';
-                card.setAttribute('data-id', restaurant.id);
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animation = 'fadeInUp 0.5s ease backwards';
                 
                 card.innerHTML = `
                     <div class="restaurant-image">
-                        <img src="${restaurant.image}" alt="${restaurant.name}" onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'">
-                        <div class="restaurant-image-overlay"></div>
+                        <img src="${restaurant.image}" alt="${restaurant.name}" 
+                             onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'">
+                        <div class="restaurant-overlay"></div>
+                        ${restaurant.badge ? `<div class="restaurant-badge">${restaurant.badge}</div>` : ''}
                         <div class="restaurant-header">
                             <h3 class="restaurant-name">${restaurant.name}</h3>
                             <div class="restaurant-meta">
-                                <span><i class="fas fa-map-marker-alt"></i> ${restaurant.city}</span>
-                                <span class="restaurant-rating"><i class="fas fa-star"></i> ${restaurant.rating}</span>
+                                <span><i class="fas fa-clock"></i> ${restaurant.deliveryTime}</span>
+                                <span class="restaurant-rating">
+                                    <i class="fas fa-star"></i> ${restaurant.rating}
+                                </span>
                             </div>
                         </div>
                     </div>
                     <div class="restaurant-info">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                            <span style="background: #eef2f7; color: #0a3d62; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
+                                <i class="fas fa-map-marker-alt"></i> ${restaurant.city}
+                            </span>
+                            <span style="background: #eef2f7; color: #666; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
+                                <i class="fas fa-shopping-basket"></i> طلب أدنى: ${restaurant.minOrder} د.إ
+                            </span>
+                        </div>
                         <p class="restaurant-description">${restaurant.description}</p>
-                        <button class="view-restaurant-btn" onclick="viewRestaurant(${restaurant.id})">
+                        <button class="view-menu-btn" onclick="showRestaurantDetail(${restaurant.id})">
                             <i class="fas fa-eye"></i>
-                            عرض الوجبات
+                            عرض قائمة الوجبات
                         </button>
                     </div>
                 `;
@@ -1569,59 +2338,104 @@
             });
         }
 
-        // عرض تفاصيل المطعم مع الصور
-        function viewRestaurant(restaurantId) {
-            currentRestaurant = restaurantsData.find(r => r.id === restaurantId);
-            if (!currentRestaurant) return;
-            
-            // تحديث معلومات المطعم مع الصورة
-            document.getElementById('detailRestaurantName').textContent = currentRestaurant.name;
-            document.getElementById('detailPageTitle').textContent = currentRestaurant.name;
-            document.getElementById('detailRating').textContent = currentRestaurant.rating;
-            document.getElementById('detailDeliveryTime').textContent = currentRestaurant.deliveryTime;
-            document.getElementById('detailCity').textContent = currentRestaurant.city;
-            document.getElementById('detailRestaurantImage').src = currentRestaurant.image;
-            
-            // عرض الوجبات
-            displayMenuItems(currentRestaurant.menu);
-            
-            // الانتقال لصفحة التفاصيل
-            switchPage('restaurantDetailPage');
-        }
-
-        // عرض قائمة الوجبات مع الصور
-        function displayMenuItems(menuItems) {
-            const container = document.getElementById('restaurantMenuItems');
+        // ====== عرض تفاصيل المطعم ======
+        function displayRestaurantDetail(restaurant) {
+            const container = document.getElementById('restaurantDetailPage');
             container.innerHTML = '';
             
-            menuItems.forEach(item => {
-                const itemCard = document.createElement('div');
-                itemCard.className = 'menu-item-card';
-                
-                itemCard.innerHTML = `
-                    <div class="menu-item-image">
-                        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'">
-                    </div>
-                    <div class="menu-item-content">
-                        <div class="menu-item-header">
-                            <h4 class="menu-item-name">${item.name}</h4>
-                            <span class="menu-item-price">${item.price} د.إ</span>
+            let menuHTML = '';
+            for (const [category, items] of Object.entries(restaurant.menu)) {
+                let itemsHTML = '';
+                items.forEach(item => {
+                    const cartItem = cart.find(ci => ci.id === item.id);
+                    const quantity = cartItem ? cartItem.quantity : 0;
+                    
+                    itemsHTML += `
+                        <div class="menu-item-card">
+                            ${item.popular ? `<div style="position: absolute; top: 1rem; left: 1rem; background: var(--accent); color: var(--dark); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 800; z-index: 1;">🔥 الأكثر طلباً</div>` : ''}
+                            <div class="menu-item-image">
+                                <img src="${item.image}" alt="${item.name}" 
+                                     onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'">
+                            </div>
+                            <h4 class="menu-item-title">${item.name}</h4>
+                            <p class="menu-item-description">${item.description}</p>
+                            <div class="menu-item-footer">
+                                <div class="menu-item-price">${item.price} د.إ</div>
+                                ${quantity > 0 ? `
+                                    <div class="cart-quantity-control">
+                                        <button class="quantity-btn" onclick="updateCartItem(${item.id}, ${quantity - 1}, '${item.name}', ${item.price}, ${restaurant.id}, '${restaurant.name}')">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <span class="quantity-value">${quantity}</span>
+                                        <button class="quantity-btn" onclick="updateCartItem(${item.id}, ${quantity + 1}, '${item.name}', ${item.price}, ${restaurant.id}, '${restaurant.name}')">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                ` : `
+                                    <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name}', ${item.price}, ${restaurant.id}, '${restaurant.name}')">
+                                        <i class="fas fa-cart-plus"></i>
+                                        إضافة
+                                    </button>
+                                `}
+                            </div>
                         </div>
-                        <p class="menu-item-desc">${item.description}</p>
-                        <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, ${currentRestaurant.id}, '${currentRestaurant.name.replace(/'/g, "\\'")}')">
-                            <i class="fas fa-plus"></i>
-                            أضف إلى السلة
-                        </button>
+                    `;
+                });
+                
+                menuHTML += `
+                    <div class="menu-category">
+                        <h3 class="menu-category-title">
+                            <i class="fas fa-utensils"></i>
+                            ${category}
+                        </h3>
+                        <div class="menu-items-grid">
+                            ${itemsHTML}
+                        </div>
                     </div>
                 `;
+            }
+            
+            container.innerHTML = `
+                <div class="restaurant-detail-header">
+                    <img class="restaurant-detail-image" src="${restaurant.image}" alt="${restaurant.name}">
+                    <div class="restaurant-detail-overlay"></div>
+                    <button class="restaurant-detail-back" onclick="showRestaurantsPage()">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <div class="restaurant-detail-info">
+                        <h1 class="restaurant-detail-name">${restaurant.name}</h1>
+                        <div class="restaurant-detail-meta">
+                            <div class="restaurant-detail-rating">
+                                <i class="fas fa-star"></i>
+                                ${restaurant.rating}
+                            </div>
+                            <span><i class="fas fa-clock"></i> ${restaurant.deliveryTime}</span>
+                            <span><i class="fas fa-map-marker-alt"></i> ${restaurant.city}</span>
+                            <span><i class="fas fa-shopping-basket"></i> طلب أدنى: ${restaurant.minOrder} د.إ</span>
+                        </div>
+                        <p>${restaurant.description}</p>
+                    </div>
+                </div>
                 
-                container.appendChild(itemCard);
-            });
+                <div class="restaurant-detail-content">
+                    <div class="info-banner">
+                        <i class="fas fa-info-circle"></i>
+                        <div>جميع الوجبات تُحضر طازجة بعد الطلب وتُقدم بأعلى معايير الجودة</div>
+                    </div>
+                    
+                    <div class="menu-section">
+                        <h2 style="color: var(--primary); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                            <i class="fas fa-book"></i>
+                            قائمة الوجبات
+                        </h2>
+                        ${menuHTML}
+                    </div>
+                </div>
+            `;
         }
 
-        // إضافة إلى السلة
+        // ====== إدارة السلة ======
         function addToCart(itemId, itemName, itemPrice, restaurantId, restaurantName) {
-            // التحقق من مطعم مختلف
             if (cart.length > 0 && cart[0].restaurantId !== restaurantId) {
                 if (confirm('لديك عناصر من مطعم آخر في السلة. هل تريد تفريغ السلة وإضافة عناصر من هذا المطعم؟')) {
                     cart = [];
@@ -1631,7 +2445,6 @@
                 }
             }
             
-            // البحث عن العنصر في السلة
             const existingItem = cart.find(item => item.id === itemId);
             
             if (existingItem) {
@@ -1648,78 +2461,117 @@
             }
             
             updateCart();
-            showNotification('تمت الإضافة إلى السلة!');
+            showNotification('تمت الإضافة إلى السلة بنجاح! 🛒');
+            
+            // تحديث واجهة التفاصيل إذا كانت مفتوحة
+            if (currentRestaurant) {
+                displayRestaurantDetail(currentRestaurant);
+            }
         }
 
-        // تحديث السلة
+        function updateCartItem(itemId, newQuantity, itemName, itemPrice, restaurantId, restaurantName) {
+            if (newQuantity <= 0) {
+                cart = cart.filter(item => item.id !== itemId);
+                showNotification('تم إزالة العنصر من السلة');
+            } else {
+                const existingItem = cart.find(item => item.id === itemId);
+                if (existingItem) {
+                    existingItem.quantity = newQuantity;
+                } else {
+                    addToCart(itemId, itemName, itemPrice, restaurantId, restaurantName);
+                    return;
+                }
+            }
+            
+            updateCart();
+            
+            // تحديث واجهة التفاصيل إذا كانت مفتوحة
+            if (currentRestaurant) {
+                displayRestaurantDetail(currentRestaurant);
+            }
+        }
+
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            updateCart();
+            showNotification('تم إزالة العنصر من السلة');
+            
+            // تحديث واجهة التفاصيل إذا كانت مفتوحة
+            if (currentRestaurant) {
+                displayRestaurantDetail(currentRestaurant);
+            }
+        }
+
         function updateCart() {
             localStorage.setItem('ramadanCart', JSON.stringify(cart));
             
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const deliveryFee = 5;
+            const deliveryFee = totalItems > 0 ? 10 : 0;
             const total = subtotal + deliveryFee;
             
             // تحديث العدادات
             document.getElementById('fabBadge').textContent = totalItems;
             document.getElementById('headerCartBadge').textContent = totalItems;
-            document.getElementById('detailCartBadge').textContent = totalItems;
-            document.getElementById('detailFabBadge').textContent = totalItems;
-            document.getElementById('mobileCartCount').textContent = `${totalItems} عنصر`;
+            document.getElementById('cartCount').textContent = `${totalItems} عنصر${totalItems > 1 ? 'ات' : ''}`;
             
-            // تحديث المبالغ
-            document.getElementById('mobileCartTotal').textContent = `${subtotal} د.إ`;
-            document.getElementById('mobileFinalTotal').textContent = `${total} د.إ`;
+            // تحديث عرض السلة
+            updateCartDisplay();
             
-            // عرض/إخفاء ملخص السلة
-            const cartSummary = document.getElementById('cartSummary');
-            const checkoutBtn = document.getElementById('mobileCheckout');
-            
+            // تأثير على زر السلة
             if (totalItems > 0) {
-                cartSummary.style.display = 'block';
-                checkoutBtn.disabled = false;
-            } else {
-                cartSummary.style.display = 'none';
-                checkoutBtn.disabled = true;
+                const cartFab = document.getElementById('cartFab');
+                cartFab.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    cartFab.style.transform = '';
+                }, 300);
             }
-            
-            // تحديث محتويات السلة
-            updateCartItems();
         }
 
-        // تحديث عناصر السلة
-        function updateCartItems() {
-            const container = document.getElementById('mobileCartItems');
+        function updateCartDisplay() {
+            const container = document.getElementById('cartItemsContainer');
+            const emptyElement = document.getElementById('cartEmpty');
+            const summaryElement = document.getElementById('cartSummary');
             
             if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-cart-state">
-                        <i class="fas fa-shopping-basket"></i>
-                        <p>السلة فارغة</p>
-                        <small>أضف بعض الوجبات من المطاعم</small>
-                    </div>
-                `;
+                emptyElement.style.display = 'block';
+                summaryElement.style.display = 'none';
+                container.innerHTML = '';
                 return;
             }
             
+            emptyElement.style.display = 'none';
+            summaryElement.style.display = 'block';
+            
             let itemsHTML = '';
+            let subtotal = 0;
+            
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
                 itemsHTML += `
-                    <div class="cart-item">
-                        <div class="cart-item-details">
-                            <div class="cart-item-name">${item.name}</div>
-                            <div class="cart-item-restaurant">${item.restaurantName}</div>
-                            <div class="cart-item-price">${itemTotal} د.إ</div>
+                    <div class="cart-item cart-item-enter">
+                        <div class="cart-item-image">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-info">
+                            <h4 class="cart-item-name">${item.name}</h4>
+                            <div class="cart-item-price">${item.price} د.إ</div>
                         </div>
                         <div class="cart-item-controls">
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                            <div class="cart-quantity-control">
+                                <button class="quantity-btn" onclick="updateCartItem(${item.id}, ${item.quantity - 1}, '${item.name}', ${item.price}, ${item.restaurantId}, '${item.restaurantName}')">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="quantity-value">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateCartItem(${item.id}, ${item.quantity + 1}, '${item.name}', ${item.price}, ${item.restaurantId}, '${item.restaurantName}')">
+                                    <i class="fas fa-plus"></i>
+                                </button>
                             </div>
+                            <div class="cart-item-total">${itemTotal} د.إ</div>
                             <button class="remove-item-btn" onclick="removeFromCart(${item.id})">
-                                <i class="fas fa-times"></i>
+                                <i class="fas fa-trash"></i>
                             </button>
                         </div>
                     </div>
@@ -1727,45 +2579,87 @@
             });
             
             container.innerHTML = itemsHTML;
-        }
-
-        // تحديث الكمية
-        function updateQuantity(itemId, newQuantity) {
-            if (newQuantity < 1) {
-                removeFromCart(itemId);
-                return;
-            }
             
-            const item = cart.find(item => item.id === itemId);
-            if (item) {
-                item.quantity = newQuantity;
-                updateCart();
-            }
+            const deliveryFee = 10;
+            const total = subtotal + deliveryFee;
+            
+            summaryElement.innerHTML = `
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">ملخص الطلب</h3>
+                <div class="summary-row">
+                    <span>المجموع الفرعي</span>
+                    <span>${subtotal.toFixed(2)} د.إ</span>
+                </div>
+                <div class="summary-row">
+                    <span>رسوم التوصيل</span>
+                    <span>${deliveryFee.toFixed(2)} د.إ</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>المجموع الكلي</span>
+                    <span>${total.toFixed(2)} د.إ</span>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">
+                    <i class="fas fa-shopping-bag"></i>
+                    إتمام الطلب
+                </button>
+                <p style="text-align: center; margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">
+                    طلب أدنى: ${cart[0]?.restaurantId ? restaurantsData.find(r => r.id === cart[0].restaurantId)?.minOrder || 0 : 0} د.إ
+                </p>
+            `;
         }
 
-        // إزالة من السلة
-        function removeFromCart(itemId) {
-            cart = cart.filter(item => item.id !== itemId);
-            updateCart();
-            showNotification('تم الإزالة من السلة');
-        }
-
-        // تفريغ السلة
-        function clearCart() {
+        function checkout() {
             if (cart.length === 0) {
-                showNotification('السلة فارغة بالفعل');
+                showNotification('السلة فارغة', 'error');
                 return;
             }
             
-            if (confirm('هل أنت متأكد من تفريغ السلة؟')) {
-                cart = [];
-                updateCart();
-                showNotification('تم تفريغ السلة');
-                closeCart();
+            const restaurant = restaurantsData.find(r => r.id === cart[0].restaurantId);
+            const minOrder = restaurant?.minOrder || 0;
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            if (subtotal < minOrder) {
+                showNotification(`الحد الأدنى للطلب من هذا المطعم هو ${minOrder} د.إ`, 'error');
+                return;
             }
+            
+            closeCart();
+            
+            // محاكاة عملية الدفع
+            showNotification('جاري إتمام طلبك...', 'warning');
+            
+            setTimeout(() => {
+                // حفظ الطلب
+                const order = {
+                    id: Date.now(),
+                    items: [...cart],
+                    total: subtotal + 10,
+                    restaurantId: cart[0].restaurantId,
+                    restaurantName: cart[0].restaurantName,
+                    timestamp: new Date().toISOString(),
+                    status: 'pending'
+                };
+                
+                // حفظ الطلبات السابقة
+                const orders = JSON.parse(localStorage.getItem('ramadanOrders')) || [];
+                orders.push(order);
+                localStorage.setItem('ramadanOrders', JSON.stringify(orders));
+                
+                // تفريغ السلة
+                cart = [];
+                localStorage.setItem('ramadanCart', JSON.stringify(cart));
+                updateCart();
+                
+                showNotification('تم إتمام طلبك بنجاح! سيتم توصيله خلال 30 دقيقة 🎉', 'success');
+                
+                // العودة إلى صفحة المطاعم
+                setTimeout(() => {
+                    showRestaurantsPage();
+                }, 2000);
+                
+            }, 2000);
         }
 
-        // فلترة المطاعم
+        // ====== البحث والفلترة ======
         function filterRestaurants() {
             const city = document.getElementById('cityFilter').value;
             const search = document.getElementById('searchInput').value.trim().toLowerCase();
@@ -1780,8 +2674,9 @@
                 filtered = filtered.filter(restaurant => {
                     if (restaurant.name.toLowerCase().includes(search)) return true;
                     if (restaurant.description.toLowerCase().includes(search)) return true;
+                    if (restaurant.type && restaurant.type.toLowerCase().includes(search)) return true;
                     
-                    const hasMatchingItem = restaurant.menu.some(item => 
+                    const hasMatchingItem = Object.values(restaurant.menu).flat().some(item => 
                         item.name.toLowerCase().includes(search) || 
                         item.description.toLowerCase().includes(search)
                     );
@@ -1794,120 +2689,109 @@
             displayRestaurants(filtered);
         }
 
-        // التبديل بين الصفحات
-        function switchPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            document.getElementById(pageId).classList.add('active');
-            
-            if (pageId === 'restaurantsPage') {
-                displayRestaurants(currentRestaurants);
-            }
-        }
-
-        // فتح السلة
-        function openCart() {
-            document.getElementById('cartBottomSheet').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // إغلاق السلة
-        function closeCart() {
-            document.getElementById('cartBottomSheet').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // إتمام الطلب
-        function checkoutOrder() {
-            if (cart.length === 0) {
-                showNotification('السلة فارغة');
-                return;
-            }
-            
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const total = subtotal + 5;
-            
-            let orderDetails = '📋 *تفاصيل الطلب:*\n\n';
-            cart.forEach(item => {
-                orderDetails += `• ${item.name} × ${item.quantity}: ${item.price * item.quantity} د.إ\n`;
-            });
-            orderDetails += `\nالمجموع: ${subtotal} د.إ\nرسوم التوصيل: 5 د.إ\n*الإجمالي: ${total} د.إ*`;
-            
-            const message = encodeURIComponent(`🚚 *طلب جديد من رمضان كريم*\n\n${orderDetails}\n\nيرجى التواصل على واتساب لإكمال الطلب.`);
-            const whatsappURL = `https://wa.me/971501234567?text=${message}`;
-            
-            alert(`✅ تم تجهيز طلبك!\n\nالإجمالي: ${total} د.إ\n\nسيتم توجيهك لواتساب لإكمال عملية الدفع.`);
-            window.open(whatsappURL, '_blank');
-            
-            setTimeout(() => {
-                cart = [];
-                updateCart();
-                closeCart();
-            }, 1000);
-        }
-
-        // إظهار الإشعار
-        function showNotification(message) {
+        // ====== الإشعارات ======
+        function showNotification(message, type = 'success') {
             const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
             document.body.appendChild(notification);
             
             setTimeout(() => {
-                notification.style.animation = 'slideOutRight 0.3s ease';
+                notification.style.animation = 'slideInRight 0.3s ease reverse';
                 setTimeout(() => notification.remove(), 300);
             }, 3000);
         }
 
-        // إعداد الأحداث
+        // ====== تأثيرات التمرير ======
+        function initScrollEffects() {
+            window.addEventListener('scroll', handleScroll);
+        }
+
+        function handleScroll() {
+            const scrollPosition = window.scrollY;
+            
+            // تأثير الهيدر في الصفحة الرئيسية
+            const landingHeader = document.getElementById('landingHeader');
+            if (landingHeader) {
+                if (scrollPosition > 50 && !isScrolled) {
+                    landingHeader.classList.add('scrolled');
+                    isScrolled = true;
+                } else if (scrollPosition <= 50 && isScrolled) {
+                    landingHeader.classList.remove('scrolled');
+                    isScrolled = false;
+                }
+            }
+            
+            // تأثير الهيدر في صفحة المطاعم
+            const appHeader = document.getElementById('appHeader');
+            const filtersSection = document.getElementById('filtersSection');
+            const mainContent = document.getElementById('mainContent');
+            
+            if (appHeader && filtersSection && mainContent) {
+                if (scrollPosition > 100) {
+                    appHeader.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.12)';
+                    filtersSection.style.top = '60px';
+                    mainContent.style.marginTop = '140px';
+                } else {
+                    appHeader.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+                    filtersSection.style.top = '73px';
+                    mainContent.style.marginTop = '160px';
+                }
+            }
+        }
+
+        // ====== إدارة السلة المنبثقة ======
+        function openCart() {
+            document.getElementById('cartSheet').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCart() {
+            document.getElementById('cartSheet').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ====== إعداد الأحداث ======
         function setupEventListeners() {
-            // أزرار التنقل
-            document.getElementById('exploreRestaurantsBtn').addEventListener('click', () => {
-                switchPage('restaurantsPage');
+            // أزرار الصفحة الترحيبية
+            document.getElementById('landingCtaBtn').addEventListener('click', showRestaurantsPage);
+            document.getElementById('exploreRestaurantsBtn').addEventListener('click', showRestaurantsPage);
+            document.getElementById('howItWorksBtn').addEventListener('click', () => {
+                showNotification('سيتم شرح آلية العمل في التحديث القادم!', 'warning');
             });
+            document.getElementById('finalCtaBtn').addEventListener('click', showRestaurantsPage);
             
-            document.getElementById('backToLandingBtn').addEventListener('click', () => {
-                switchPage('landingPage');
-            });
-            
-            document.getElementById('backToRestaurantsBtn').addEventListener('click', () => {
-                switchPage('restaurantsPage');
-            });
+            // أزرار صفحة المطاعم
+            document.getElementById('backToHomeBtn').addEventListener('click', showLandingPage);
+            document.getElementById('headerCartBtn').addEventListener('click', openCart);
+            document.getElementById('cartFab').addEventListener('click', openCart);
+            document.getElementById('closeCartBtn').addEventListener('click', closeCart);
             
             // البحث والفلترة
             document.getElementById('cityFilter').addEventListener('change', filterRestaurants);
-            document.getElementById('searchBtn').addEventListener('click', filterRestaurants);
-            document.getElementById('searchInput').addEventListener('keyup', function(e) {
-                if (e.key === 'Enter') filterRestaurants();
-            });
-            
-            let searchTimeout;
             document.getElementById('searchInput').addEventListener('input', function() {
-                clearTimeout(searchTimeout);
-                searchTimeout = setTimeout(filterRestaurants, 500);
+                clearTimeout(this.searchTimeout);
+                this.searchTimeout = setTimeout(filterRestaurants, 500);
             });
-            
-            // السلة
-            document.getElementById('cartFab').addEventListener('click', openCart);
-            document.getElementById('detailCartFab').addEventListener('click', openCart);
-            document.getElementById('headerCartBtn').addEventListener('click', openCart);
-            document.getElementById('detailCartBtn').addEventListener('click', openCart);
-            document.getElementById('closeBottomSheet').addEventListener('click', closeCart);
-            
-            document.getElementById('mobileClearCart').addEventListener('click', clearCart);
-            document.getElementById('mobileCheckout').addEventListener('click', checkoutOrder);
             
             // إغلاق السلة عند النقر خارجها
             document.addEventListener('click', function(e) {
-                const cartSheet = document.getElementById('cartBottomSheet');
+                const cartSheet = document.getElementById('cartSheet');
                 if (cartSheet.classList.contains('active') && 
                     !cartSheet.contains(e.target) && 
                     !document.getElementById('cartFab').contains(e.target) &&
-                    !document.getElementById('detailCartFab').contains(e.target) &&
-                    !document.getElementById('headerCartBtn').contains(e.target) &&
-                    !document.getElementById('detailCartBtn').contains(e.target)) {
+                    !document.getElementById('headerCartBtn').contains(e.target)) {
+                    closeCart();
+                }
+            });
+            
+            // إغلاق السلة بمفتاح ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
                     closeCart();
                 }
             });
