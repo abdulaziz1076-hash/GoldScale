@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* إعادة الضبط */
         * {
             margin: 0;
             padding: 0;
@@ -66,10 +65,7 @@
         
         /* الصفحة الرئيسية التسويقية */
         #landingPage {
-            background: linear-gradient(rgba(10, 61, 98, 0.9), rgba(30, 95, 138, 0.9)),
-                        url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(rgba(10, 61, 98, 0.9), rgba(30, 95, 138, 0.9));
             color: white;
             padding: 40px 20px;
             text-align: center;
@@ -77,6 +73,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
         }
         
         .landing-content {
@@ -131,7 +128,6 @@
             background: rgba(255, 255, 255, 0.1);
             padding: 25px;
             border-radius: 15px;
-            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
@@ -311,6 +307,7 @@
             color: #2c3e50;
             border-radius: 10px;
             font-weight: 500;
+            cursor: pointer;
         }
         
         .filter-icon {
@@ -401,12 +398,6 @@
             }
         }
         
-        @media (min-width: 1024px) {
-            .restaurants-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-        
         /* بطاقة المطعم */
         .restaurant-card {
             background: white;
@@ -415,48 +406,44 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             cursor: pointer;
             transition: transform 0.3s;
+            border: 1px solid #f0f0f0;
         }
         
         .restaurant-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
         
-        .restaurant-image {
-            height: 150px;
+        .restaurant-header {
             background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 20px;
             color: white;
-            font-size: 2rem;
+        }
+        
+        .restaurant-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        
+        .restaurant-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .restaurant-rating {
+            color: #f9c74f;
+            font-weight: 600;
         }
         
         .restaurant-info {
             padding: 15px;
         }
         
-        .restaurant-name {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            color: #2c3e50;
-        }
-        
-        .restaurant-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.85rem;
-            color: #666;
-        }
-        
-        .restaurant-rating {
-            color: #f9c74f;
-            font-weight: 700;
-        }
-        
         .restaurant-description {
-            color: #777;
+            color: #666;
             font-size: 0.9rem;
             margin-bottom: 15px;
             line-height: 1.4;
@@ -553,6 +540,12 @@
             border-radius: 10px;
             padding: 15px;
             border: 1px solid #eef2f7;
+            transition: all 0.3s;
+        }
+        
+        .menu-item-card:hover {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .menu-item-header {
@@ -819,6 +812,11 @@
             cursor: pointer;
         }
         
+        .checkout-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
         /* رسالة عدم وجود نتائج */
         .no-results {
             text-align: center;
@@ -827,6 +825,7 @@
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             margin-top: 20px;
+            display: none;
         }
         
         .no-results i {
@@ -973,14 +972,14 @@
                         الرئيسية
                     </button>
                     
-                    <a href="#" class="logo">
+                    <div class="logo">
                         <div class="logo-icon">
                             <i class="fas fa-moon"></i>
                         </div>
                         <div class="logo-text">
                             <h1>رمضان كريم</h1>
                         </div>
-                    </a>
+                    </div>
                     
                     <button class="cart-btn" id="headerCartBtn">
                         <i class="fas fa-shopping-cart"></i>
@@ -1023,7 +1022,7 @@
                         المطاعم المتاحة
                     </h2>
                     <div class="restaurants-count" id="restaurantsCount">
-                        0 مطعم
+                        جاري التحميل...
                     </div>
                 </div>
 
@@ -1031,7 +1030,7 @@
                     <!-- المطاعم تُعرض هنا -->
                 </div>
 
-                <div id="noResults" class="no-results" style="display: none;">
+                <div id="noResults" class="no-results">
                     <i class="fas fa-search"></i>
                     <h3>لا توجد نتائج</h3>
                     <p>جرب البحث بكلمات أخرى أو اختر منطقة أخرى</p>
@@ -1066,18 +1065,18 @@
                     </div>
                 </div>
                 
-                <div class="cart-summary" id="cartSummary" style="display: none;">
+                <div class="cart-summary" id="cartSummary">
                     <div class="cart-summary-row">
                         <span>المجموع:</span>
-                        <span id="mobileCartTotal">0 درهم</span>
+                        <span id="mobileCartTotal">0 د.إ</span>
                     </div>
                     <div class="cart-summary-row">
                         <span>رسوم التوصيل:</span>
-                        <span>5 دراهم</span>
+                        <span>5 د.إ</span>
                     </div>
                     <div class="cart-summary-row cart-final-total">
                         <span>الإجمالي النهائي:</span>
-                        <span id="mobileFinalTotal">5 دراهم</span>
+                        <span id="mobileFinalTotal">5 د.إ</span>
                     </div>
                 </div>
                 
@@ -1085,7 +1084,7 @@
                     <button class="clear-cart-btn" id="mobileClearCart">
                         <i class="fas fa-trash"></i> تفريغ
                     </button>
-                    <button class="checkout-btn" id="mobileCheckout">
+                    <button class="checkout-btn" id="mobileCheckout" disabled>
                         <i class="fas fa-check-circle"></i> إتمام الطلب
                     </button>
                 </div>
@@ -1126,15 +1125,15 @@
                 <div class="restaurant-detail-meta">
                     <div class="meta-item">
                         <i class="fas fa-star"></i>
-                        <span id="detailRating">4.5</span>
+                        <span id="detailRating">0.0</span>
                     </div>
                     <div class="meta-item">
                         <i class="fas fa-clock"></i>
-                        <span id="detailDeliveryTime">25-40 دقيقة</span>
+                        <span id="detailDeliveryTime">0-0 دقيقة</span>
                     </div>
                     <div class="meta-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span id="detailCity">أبوظبي</span>
+                        <span id="detailCity">المدينة</span>
                     </div>
                 </div>
             </div>
@@ -1159,7 +1158,7 @@
             <span class="fab-badge" id="detailFabBadge">0</span>
         </button>
 
-        <!-- نفس السلة المنبثقة -->
+        <!-- نفس السلة المنبثقة تستخدم في كل الصفحات -->
     </div>
 
     <!-- الفوتر -->
@@ -1252,6 +1251,32 @@
                     { id: 402, name: "شاورما لحم", price: 35, description: "شاورما لحم تركية مع خبز وثومية" },
                     { id: 403, name: "معجنات تركية", price: 45, description: "معجنات متنوعة بالجبن واللحوم" }
                 ]
+            },
+            {
+                id: 5,
+                name: "مطعم القصيم السعودي",
+                city: "بني ياس",
+                rating: 4.4,
+                deliveryTime: "40-55 دقيقة",
+                description: "مطعم سعودي يقدم أشهى أطباق المطبخ السعودي من كبسة ومندي ومرقوق.",
+                menu: [
+                    { id: 501, name: "كبسة دجاج", price: 55, description: "أرز كبسة مع دجاج طازج وتوابل سعودية" },
+                    { id: 502, name: "مندي لحم", price: 70, description: "لحم ضأن مع أرز مندي مطبوخ في التنور" },
+                    { id: 503, name: "مرقوق لحم", price: 50, description: "مرقوق لحم مع خبز رقاق ومرق غني" }
+                ]
+            },
+            {
+                id: 6,
+                name: "مطعم سندريلا",
+                city: "خليفة",
+                rating: 4.9,
+                deliveryTime: "25-40 دقيقة",
+                description: "أشهر مطعم للوجبات السريعة في أبوظبي، يقدم برجر ودجاج وبيتزا بأعلى جودة.",
+                menu: [
+                    { id: 601, name: "برجر لحم خاص", price: 45, description: "برجر لحم مع جبنة وصلصة خاصة وخضار طازجة" },
+                    { id: 602, name: "دجاج كرسبي", price: 40, description: "دجاج مقرمش مع صلصات متنوعة" },
+                    { id: 603, name: "بيتزا كبيرة", price: 65, description: "بيتزا كبيرة مع جميع الإضافات وجبنة موزاريلا" }
+                ]
             }
         ];
 
@@ -1307,10 +1332,7 @@
                 card.setAttribute('data-id', restaurant.id);
                 
                 card.innerHTML = `
-                    <div class="restaurant-image">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <div class="restaurant-info">
+                    <div class="restaurant-header">
                         <h3 class="restaurant-name">${restaurant.name}</h3>
                         <div class="restaurant-meta">
                             <span><i class="fas fa-map-marker-alt"></i> ${restaurant.city}</span>
@@ -1320,6 +1342,8 @@
                             <span><i class="fas fa-clock"></i> ${restaurant.deliveryTime}</span>
                             <span>${restaurant.menu.length} وجبة</span>
                         </div>
+                    </div>
+                    <div class="restaurant-info">
                         <p class="restaurant-description">${restaurant.description}</p>
                         <button class="view-restaurant-btn" onclick="viewRestaurant(${restaurant.id})">
                             <i class="fas fa-eye"></i>
@@ -1470,7 +1494,7 @@
                         <div class="cart-item-details">
                             <div class="cart-item-name">${item.name}</div>
                             <div class="cart-item-restaurant">${item.restaurantName}</div>
-                            <div class="cart-item-price">${item.price} × ${item.quantity} = ${itemTotal} د.إ</div>
+                            <div class="cart-item-price">${itemTotal} د.إ</div>
                         </div>
                         <div class="cart-item-controls">
                             <div class="quantity-controls">
@@ -1528,7 +1552,7 @@
         // فلترة المطاعم
         function filterRestaurants() {
             const city = document.getElementById('cityFilter').value;
-            const search = document.getElementById('searchInput').value.toLowerCase();
+            const search = document.getElementById('searchInput').value.trim().toLowerCase();
             
             let filtered = restaurantsData;
             
@@ -1540,9 +1564,13 @@
             // بحث حسب النص
             if (search) {
                 filtered = filtered.filter(restaurant => {
+                    // البحث في اسم المطعم
                     if (restaurant.name.toLowerCase().includes(search)) return true;
+                    
+                    // البحث في وصف المطعم
                     if (restaurant.description.toLowerCase().includes(search)) return true;
                     
+                    // البحث في قائمة الطعام
                     const hasMatchingItem = restaurant.menu.some(item => 
                         item.name.toLowerCase().includes(search) || 
                         item.description.toLowerCase().includes(search)
@@ -1630,22 +1658,32 @@
         // إعداد الأحداث
         function setupEventListeners() {
             // أزرار التنقل بين الصفحات
-            document.getElementById('exploreRestaurantsBtn').addEventListener('click', () => switchPage('restaurantsPage'));
-            document.getElementById('backToLandingBtn').addEventListener('click', () => switchPage('landingPage'));
-            document.getElementById('backToRestaurantsBtn').addEventListener('click', () => switchPage('restaurantsPage'));
+            document.getElementById('exploreRestaurantsBtn').addEventListener('click', () => {
+                switchPage('restaurantsPage');
+            });
+            
+            document.getElementById('backToLandingBtn').addEventListener('click', () => {
+                switchPage('landingPage');
+            });
+            
+            document.getElementById('backToRestaurantsBtn').addEventListener('click', () => {
+                switchPage('restaurantsPage');
+            });
             
             // البحث والفلترة
             document.getElementById('cityFilter').addEventListener('change', filterRestaurants);
             document.getElementById('searchBtn').addEventListener('click', filterRestaurants);
             document.getElementById('searchInput').addEventListener('keyup', function(e) {
-                if (e.key === 'Enter') filterRestaurants();
+                if (e.key === 'Enter') {
+                    filterRestaurants();
+                }
             });
             
             // البحث أثناء الكتابة
             let searchTimeout;
             document.getElementById('searchInput').addEventListener('input', function() {
                 clearTimeout(searchTimeout);
-                searchTimeout = setTimeout(filterRestaurants, 300);
+                searchTimeout = setTimeout(filterRestaurants, 500);
             });
             
             // السلة
