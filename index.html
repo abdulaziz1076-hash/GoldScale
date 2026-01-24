@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>وجبات رمضان أبوظبي | توصيل الإفطار والسحور</title>
+    <title>رمضـان كريم | توصيل الإفطار والسحور أبوظبي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* ====== إعادة الضبط ====== */
         * {
@@ -17,11 +17,11 @@
         
         body {
             font-family: 'Cairo', sans-serif;
-            background: #f8f9fa;
-            color: #333;
+            background: linear-gradient(135deg, #fef9f3 0%, #fff9f0 100%);
+            color: #2c3e50;
             line-height: 1.6;
-            padding-bottom: 80px;
-            padding-top: 60px;
+            padding-bottom: 90px;
+            padding-top: 70px;
         }
         
         /* ====== التحميل الأولي ====== */
@@ -36,7 +36,7 @@
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.3s;
+            transition: opacity 0.4s ease;
         }
         
         .loader-content {
@@ -45,7 +45,7 @@
         }
         
         .loader-icon {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
             animation: pulse 1.5s infinite;
         }
@@ -63,9 +63,9 @@
             width: 100%;
             background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
             color: white;
-            padding: 15px 0;
+            padding: 12px 0;
             z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(10, 61, 98, 0.2);
         }
         
         .container {
@@ -84,41 +84,95 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
         }
         
-        .logo i {
-            font-size: 1.8rem;
-            color: #f9c74f;
+        .logo-icon {
+            background: linear-gradient(135deg, #f9c74f 0%, #f3b82c 100%);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(249, 199, 79, 0.3);
         }
         
         .logo-text h1 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 2px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 3px;
+            line-height: 1.2;
         }
         
         .logo-subtitle {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .header-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .header-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         /* ====== الفلتر ====== */
         .filters {
             position: fixed;
-            top: 60px;
+            top: 70px;
             left: 0;
             width: 100%;
             background: white;
-            padding: 12px 0;
+            padding: 15px 0;
             z-index: 999;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-bottom: 1px solid #eef2f7;
         }
         
         .filters-row {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
         
         @media (min-width: 768px) {
@@ -130,86 +184,192 @@
         }
         
         .filter-select-wrapper {
-            display: flex;
-            align-items: center;
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 0 15px;
-            border: 1px solid #e9ecef;
+            position: relative;
             flex: 1;
         }
         
-        .filter-select-wrapper i {
-            color: #0a3d62;
-            font-size: 1rem;
-            margin-left: 8px;
-        }
-        
-        #cityFilter {
-            flex: 1;
-            padding: 14px 5px;
-            border: none;
-            background: transparent;
+        .filter-select {
+            width: 100%;
+            padding: 14px 45px 14px 15px;
+            border: 2px solid #eef2f7;
+            background: white;
             font-family: 'Cairo';
             font-size: 0.95rem;
-            color: #333;
-            width: 100%;
+            color: #2c3e50;
+            border-radius: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
             -webkit-appearance: none;
             appearance: none;
         }
         
+        .filter-select:focus {
+            border-color: #0a3d62;
+            box-shadow: 0 0 0 3px rgba(10, 61, 98, 0.1);
+            outline: none;
+        }
+        
+        .filter-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #0a3d62;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+        
         /* ====== البحث ====== */
-        .search-input-wrapper {
-            display: flex;
-            background: #f8f9fa;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #e9ecef;
+        .search-wrapper {
+            position: relative;
             flex: 2;
         }
         
-        #searchInput {
-            flex: 1;
-            padding: 14px 15px;
-            border: none;
-            background: transparent;
+        .search-input {
+            width: 100%;
+            padding: 14px 50px 14px 15px;
+            border: 2px solid #eef2f7;
+            background: white;
             font-family: 'Cairo';
             font-size: 0.95rem;
+            color: #2c3e50;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s;
         }
         
-        #searchBtn {
-            background: #0a3d62;
+        .search-input:focus {
+            border-color: #0a3d62;
+            box-shadow: 0 0 0 3px rgba(10, 61, 98, 0.1);
+            outline: none;
+        }
+        
+        .search-btn {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
             color: white;
             border: none;
-            padding: 0 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.05);
         }
         
         /* ====== المحتوى الرئيسي ====== */
         .main-content {
-            margin-top: 130px;
-            padding: 0 15px 20px;
+            margin-top: 140px;
+            padding: 0 10px 20px;
         }
         
-        .welcome-card {
-            background: linear-gradient(135deg, #f9c74f 0%, #f3b82c 100%);
+        /* ====== الإعلان ====== */
+        .promo-banner {
+            background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
             border-radius: 16px;
             padding: 20px;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .promo-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+        
+        .promo-content {
+            position: relative;
+            z-index: 1;
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 20px;
-            color: #333;
         }
         
-        .welcome-icon {
-            font-size: 2rem;
+        .promo-icon {
+            font-size: 2.5rem;
+            color: #f9c74f;
         }
         
-        .welcome-text h3 {
-            font-size: 1.2rem;
+        .promo-text h3 {
+            font-size: 1.3rem;
             margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .promo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .promo-badge {
+            background: #f9c74f;
+            color: #2c3e50;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: auto;
+        }
+        
+        /* ====== ترويسة المطاعم ====== */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 0 5px;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: #0a3d62;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: #f9c74f;
+        }
+        
+        .restaurants-count {
+            background: #eef2f7;
+            color: #2c3e50;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
         
         /* ====== شبكة المطاعم ====== */
@@ -217,18 +377,25 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 15px;
-            margin-top: 15px;
+            margin-top: 10px;
         }
         
-        @media (min-width: 768px) {
+        /* تصميم متجاوب للمطاعم */
+        @media (min-width: 480px) {
             .restaurants-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
         
-        @media (min-width: 1024px) {
+        @media (min-width: 768px) {
             .restaurants-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .restaurants-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
         
@@ -237,47 +404,82 @@
             background: white;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid #f0f0f0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
         .restaurant-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            border-color: #e0e0e0;
         }
         
         .restaurant-header {
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                         linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
-            padding: 20px;
+            padding: 18px;
             color: white;
+            position: relative;
         }
         
         .restaurant-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 5px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.3;
         }
         
         .restaurant-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 0.9rem;
-            opacity: 0.9;
+            align-items: center;
+            font-size: 0.85rem;
+            opacity: 0.95;
         }
         
         .restaurant-rating {
+            background: rgba(249, 199, 79, 0.2);
             color: #f9c74f;
-            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .restaurant-rating i {
+            font-size: 0.9rem;
         }
         
         .restaurant-info {
             padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .restaurant-address {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .restaurant-address i {
+            color: #0a3d62;
         }
         
         .menu-items {
-            border-top: 1px solid #eee;
+            border-top: 1px solid #f0f0f0;
             padding-top: 15px;
+            flex-grow: 1;
         }
         
         .menu-item {
@@ -288,34 +490,45 @@
             border-bottom: 1px solid #f5f5f5;
         }
         
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
         .item-info {
             flex: 1;
+            padding-left: 10px;
         }
         
         .item-name {
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 3px;
+            color: #2c3e50;
+            font-size: 0.95rem;
         }
         
         .item-description {
-            font-size: 0.85rem;
-            color: #666;
+            font-size: 0.8rem;
+            color: #777;
+            line-height: 1.4;
         }
         
         .item-actions {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            flex-shrink: 0;
         }
         
         .item-price {
             color: #e74c3c;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1.1rem;
+            min-width: 60px;
+            text-align: left;
         }
         
         .add-to-cart-btn {
-            background: #2ecc71;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
             color: white;
             border: none;
             width: 40px;
@@ -324,13 +537,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
         }
         
         .add-to-cart-btn:hover {
-            background: #27ae60;
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
         }
         
         /* ====== سلة الطلبات العائمة ====== */
@@ -348,14 +563,19 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 20px rgba(10,61,98,0.4);
+            box-shadow: 0 8px 25px rgba(10, 61, 98, 0.4);
             cursor: pointer;
             z-index: 1000;
-            transition: transform 0.3s;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .cart-fab:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(10, 61, 98, 0.5);
         }
         
         .cart-fab:active {
-            transform: scale(0.95);
+            transform: translateY(-2px) scale(0.98);
         }
         
         .fab-content {
@@ -363,7 +583,7 @@
         }
         
         .fab-content i {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
         }
         
         #fabBadge {
@@ -375,16 +595,18 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 2px solid white;
         }
         
         .fab-text {
             font-size: 0.8rem;
             margin-top: 2px;
+            font-weight: 600;
         }
         
         /* ====== السلة المنبثقة ====== */
@@ -396,9 +618,10 @@
             height: 85vh;
             background: white;
             border-radius: 25px 25px 0 0;
-            box-shadow: 0 -5px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
             z-index: 1001;
             transition: bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
         }
         
         .cart-bottom-sheet.active {
@@ -406,24 +629,28 @@
         }
         
         .cart-sheet-header {
-            padding: 20px 20px 10px;
+            padding: 20px 20px 15px;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
+            color: white;
+            position: relative;
         }
         
         .cart-header-content h3 {
             font-size: 1.3rem;
-            color: #0a3d62;
+            color: white;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-weight: 700;
         }
         
         .cart-items-count {
-            background: #f0f7ff;
-            color: #0a3d62;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.9rem;
@@ -431,16 +658,27 @@
         }
         
         .close-bottom-sheet {
-            background: none;
+            background: rgba(255, 255, 255, 0.15);
             border: none;
-            font-size: 1.5rem;
-            color: #666;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
             cursor: pointer;
-            padding: 5px;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .close-bottom-sheet:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(90deg);
         }
         
         .cart-sheet-body {
-            height: calc(100% - 70px);
+            height: calc(100% - 75px);
             overflow-y: auto;
             padding: 0 20px;
         }
@@ -452,14 +690,27 @@
         
         .empty-cart-state {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             color: #999;
         }
         
         .empty-cart-state i {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 15px;
-            opacity: 0.5;
+            opacity: 0.4;
+            color: #0a3d62;
+        }
+        
+        .empty-cart-state p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .empty-cart-state small {
+            font-size: 0.9rem;
+            color: #999;
         }
         
         .cart-item {
@@ -472,13 +723,15 @@
         .cart-item-image {
             width: 60px;
             height: 60px;
-            background: #f5f5f5;
+            background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
             border-radius: 10px;
             margin-left: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
         
         .cart-item-details {
@@ -486,8 +739,9 @@
         }
         
         .cart-item-name {
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 3px;
+            color: #2c3e50;
         }
         
         .cart-item-restaurant {
@@ -498,7 +752,8 @@
         
         .cart-item-price {
             color: #e74c3c;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1rem;
         }
         
         .cart-item-controls {
@@ -513,14 +768,15 @@
             gap: 10px;
             background: #f0f7ff;
             padding: 5px;
-            border-radius: 8px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
         }
         
         .quantity-btn {
-            background: #f0f7ff;
-            border: none;
-            width: 30px;
-            height: 30px;
+            background: white;
+            border: 1px solid #ddd;
+            width: 28px;
+            height: 28px;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -528,81 +784,121 @@
             cursor: pointer;
             color: #0a3d62;
             font-weight: bold;
+            transition: all 0.2s;
+        }
+        
+        .quantity-btn:hover {
+            background: #f0f7ff;
+            border-color: #0a3d62;
+        }
+        
+        .quantity-display {
+            min-width: 25px;
+            text-align: center;
+            font-weight: 700;
+            color: #2c3e50;
         }
         
         .remove-item-btn {
             background: #ffeaea;
             color: #e74c3c;
             border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .remove-item-btn:hover {
+            background: #ffd5d5;
+            transform: rotate(15deg);
         }
         
         /* ====== ملخص السلة ====== */
         .cart-summary {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 20px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f7ff 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 25px 0;
+            border: 1px solid #eef2f7;
         }
         
-        .cart-total-row, .cart-delivery-row, .cart-final-total {
+        .cart-summary-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0a3d62;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cart-summary-row {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
         }
         
-        .cart-delivery-row {
-            color: #666;
-            font-size: 0.9rem;
+        .cart-summary-row:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-total-row {
+            border-bottom: none !important;
         }
         
         .cart-final-total {
-            border-top: 1px solid #ddd;
-            margin-top: 8px;
-            padding-top: 12px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #0a3d62;
+            background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
+            margin: 15px -20px -20px;
+            padding: 20px;
+            border-radius: 0 0 16px 16px;
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
         }
         
         /* ====== أزرار السلة ====== */
         .cart-actions {
-            display: flex;
-            gap: 10px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 12px;
             padding-bottom: 30px;
         }
         
         #mobileClearCart {
-            flex: 1;
             background: #f8f9fa;
             border: 2px solid #e74c3c;
             color: #e74c3c;
-            padding: 15px;
+            padding: 16px;
             border-radius: 12px;
             font-family: 'Cairo';
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        #mobileClearCart:hover {
+            background: #ffeaea;
+            transform: translateY(-2px);
         }
         
         #mobileCheckout {
-            flex: 2;
             background: linear-gradient(135deg, #f9c74f 0%, #f3b82c 100%);
             border: none;
-            color: #333;
-            padding: 15px;
+            color: #2c3e50;
+            padding: 16px;
             border-radius: 12px;
             font-family: 'Cairo';
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1rem;
             cursor: pointer;
             display: flex;
@@ -610,6 +906,19 @@
             justify-content: center;
             gap: 8px;
             position: relative;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(249, 199, 79, 0.3);
+        }
+        
+        #mobileCheckout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 199, 79, 0.4);
+        }
+        
+        #mobileCheckout:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
         }
         
         #checkoutBadge {
@@ -621,35 +930,50 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: 700;
+            border: 2px solid white;
         }
         
         /* ====== رسالة عدم وجود نتائج ====== */
         #noResults {
             text-align: center;
-            padding: 50px 20px;
+            padding: 60px 20px;
             background: white;
             border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             margin-top: 20px;
             display: none;
+            border: 1px solid #f0f0f0;
         }
         
         #noResults i {
-            font-size: 3rem;
-            color: #ddd;
-            margin-bottom: 15px;
+            font-size: 4rem;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+        
+        #noResults h3 {
+            color: #666;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        #noResults p {
+            color: #999;
+            font-size: 0.95rem;
         }
         
         /* ====== الفوتر ====== */
         .footer {
-            background: #1a252f;
+            background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
             color: white;
-            padding: 30px 15px 20px;
-            margin-top: 30px;
+            padding: 40px 15px 20px;
+            margin-top: 40px;
         }
         
         .footer-grid {
@@ -666,37 +990,68 @@
         }
         
         .footer-section h4 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: #f9c74f;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .contact-link {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             color: white;
             text-decoration: none;
-            margin-bottom: 10px;
-            padding: 8px 0;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            transition: all 0.3s;
+            border-radius: 8px;
+            padding-left: 10px;
+        }
+        
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            padding-left: 15px;
+        }
+        
+        .contact-link i {
+            width: 24px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .working-hours {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.9);
         }
         
         .social-links {
             display: flex;
             gap: 12px;
-            margin-top: 10px;
+            margin-top: 15px;
         }
         
         .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.2rem;
             text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px) scale(1.1);
         }
         
         .instagram { background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D); }
@@ -704,7 +1059,7 @@
         .snapchat { background: #FFFC00; color: #000; }
         
         .footer-bottom {
-            border-top: 1px solid #2c3e50;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 20px;
             text-align: center;
         }
@@ -716,9 +1071,10 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            font-size: 0.9rem;
         }
         
-        /* ====== الأنيميشن للإشعارات ====== */
+        /* ====== الأنيميشن ====== */
         @keyframes slideInRight {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
@@ -727,6 +1083,26 @@
         @keyframes slideOutRight {
             from { transform: translateX(0); opacity: 1; }
             to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ====== تأثيرات إضافية ====== */
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        /* ====== التمرير السلس ====== */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* ====== ظلال نص أفضل ====== */
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -737,7 +1113,7 @@
             <div class="loader-icon">
                 <i class="fas fa-moon"></i>
             </div>
-            <p>جاري تحميل المطاعم...</p>
+            <p>جاري تحضير وجباتك المفضلة...</p>
         </div>
     </div>
 
@@ -745,12 +1121,21 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-moon"></i>
-                    <div class="logo-text">
-                        <h1>وجبات رمضان</h1>
-                        <p class="logo-subtitle">أبوظبي</p>
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-moon"></i>
                     </div>
+                    <div class="logo-text">
+                        <h1>رمضـان كريم</h1>
+                        <p class="logo-subtitle">توصيل الإفطار والسحور أبوظبي</p>
+                    </div>
+                </a>
+                
+                <div class="header-actions">
+                    <button class="header-btn" id="headerCartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="header-badge" id="headerBadge">0</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -761,20 +1146,24 @@
         <div class="container">
             <div class="filters-row">
                 <div class="filter-select-wrapper">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <select id="cityFilter">
-                        <option value="all">جميع المناطق</option>
-                        <option value="أبوظبي">أبوظبي</option>
-                        <option value="المصفح">المصفح</option>
-                        <option value="الشهامة">الشهامة</option>
-                        <option value="بني ياس">بني ياس</option>
-                        <option value="خليفة">خليفة</option>
+                    <i class="fas fa-map-marker-alt filter-icon"></i>
+                    <select id="cityFilter" class="filter-select">
+                        <option value="all">📍 جميع مناطق أبوظبي</option>
+                        <option value="أبوظبي">🏙️ أبوظبي المدينة</option>
+                        <option value="المصفح">🏘️ المصفح</option>
+                        <option value="الشهامة">🏡 الشهامة</option>
+                        <option value="بني ياس">🏢 بني ياس</option>
+                        <option value="خليفة">🏬 خليفة</option>
+                        <option value="الزاهية">🏠 الزاهية</option>
+                        <option value="المرفأ">⚓ المرفأ</option>
                     </select>
                 </div>
                 
-                <div class="search-input-wrapper">
-                    <input type="text" id="searchInput" placeholder="ابحث عن وجبة أو مطعم...">
-                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن وجبة أو مطعم...">
+                    <button id="searchBtn" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -783,14 +1172,30 @@
     <!-- المحتوى الرئيسي -->
     <main class="main-content">
         <div class="container">
-            <!-- بطاقة ترحيبية -->
-            <div class="welcome-card">
-                <div class="welcome-icon">
-                    <i class="fas fa-utensils"></i>
+            <!-- إعلان ترويجي -->
+            <div class="promo-banner">
+                <div class="promo-content">
+                    <div class="promo-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="promo-text">
+                        <h3>توصيل مجاني للطلبات فوق 100 درهم!</h3>
+                        <p>اطلب الآن واستمتع بوجبات رمضان في منزلك</p>
+                    </div>
+                    <div class="promo-badge">
+                        🎁 عرض خاص
+                    </div>
                 </div>
-                <div class="welcome-text">
-                    <h3>مرحباً في رمضان!</h3>
-                    <p>اطلب إفطارك أو سحورك من أفضل المطاعم في أبوظبي</p>
+            </div>
+
+            <!-- ترويسة المطاعم -->
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-utensils"></i>
+                    أفضل المطاعم للتوصيل
+                </h2>
+                <div class="restaurants-count" id="restaurantsCount">
+                    0 مطعم
                 </div>
             </div>
 
@@ -802,8 +1207,8 @@
             <!-- رسالة عدم وجود نتائج -->
             <div id="noResults">
                 <i class="fas fa-search"></i>
-                <h3>لا توجد نتائج</h3>
-                <p>جرب البحث بكلمات مختلفة أو اختر منطقة أخرى</p>
+                <h3>لم نجد ما تبحث عنه</h3>
+                <p>حاول البحث بكلمات أخرى أو اختر منطقة مختلفة</p>
             </div>
         </div>
     </main>
@@ -814,11 +1219,11 @@
         <div class="cart-bottom-sheet" id="cartBottomSheet">
             <div class="cart-sheet-header">
                 <div class="cart-header-content">
-                    <h3><i class="fas fa-shopping-cart"></i> سلة الطلبات</h3>
+                    <h3><i class="fas fa-shopping-cart"></i> سلة طلبات رمضان</h3>
                     <span class="cart-items-count" id="mobileCartCount">0 عنصر</span>
                 </div>
                 <button class="close-bottom-sheet" id="closeBottomSheet">
-                    <i class="fas fa-chevron-down"></i>
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             
@@ -827,18 +1232,22 @@
                 <div class="cart-items-container" id="mobileCartItems">
                     <div class="empty-cart-state">
                         <i class="fas fa-shopping-basket"></i>
-                        <p>السلة فارغة</p>
-                        <small>أضف بعض الوجبات من المطاعم</small>
+                        <p>سلة التسوق فارغة</p>
+                        <small>ابدأ بإضافة بعض الوجبات اللذيذة</small>
                     </div>
                 </div>
                 
                 <!-- ملخص السلة -->
-                <div class="cart-summary">
-                    <div class="cart-total-row">
+                <div class="cart-summary" id="cartSummary" style="display: none;">
+                    <div class="cart-summary-title">
+                        <i class="fas fa-receipt"></i>
+                        ملخص الطلب
+                    </div>
+                    <div class="cart-summary-row">
                         <span>المجموع:</span>
                         <span class="total-amount" id="mobileCartTotal">0 درهم</span>
                     </div>
-                    <div class="cart-delivery-row">
+                    <div class="cart-summary-row">
                         <span>رسوم التوصيل:</span>
                         <span class="delivery-fee">5 دراهم</span>
                     </div>
@@ -851,9 +1260,9 @@
                 <!-- أزرار السلة -->
                 <div class="cart-actions">
                     <button class="clear-cart-btn" id="mobileClearCart">
-                        <i class="fas fa-trash"></i> تفريغ السلة
+                        <i class="fas fa-trash"></i> تفريغ
                     </button>
-                    <button class="checkout-btn" id="mobileCheckout">
+                    <button class="checkout-btn" id="mobileCheckout" disabled>
                         <i class="fas fa-check-circle"></i> إتمام الطلب
                         <span class="checkout-badge" id="checkoutBadge">0</span>
                     </button>
@@ -876,26 +1285,37 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
-                    <h4><i class="fas fa-headset"></i> خدمة العملاء</h4>
+                    <h4><i class="fas fa-headset"></i> الدعم والمساعدة</h4>
                     <a href="https://wa.me/971501234567" class="contact-link" target="_blank">
                         <i class="fab fa-whatsapp"></i>
-                        <span>واتساب: 050 123 4567</span>
+                        <div>
+                            <div style="font-weight: 700">واتساب الدعم</div>
+                            <small>050 123 4567</small>
+                        </div>
+                    </a>
+                    <a href="tel:+97122334455" class="contact-link">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <div style="font-weight: 700">اتصل بنا</div>
+                            <small>02 233 4455</small>
+                        </div>
                     </a>
                     <p class="working-hours">
                         <i class="fas fa-clock"></i>
-                        من 3:00 مساءً حتى 2:00 صباحاً
+                        خدمة 24/7 خلال رمضان
                     </p>
                 </div>
                 
                 <div class="footer-section">
-                    <h4><i class="fas fa-shipping-fast"></i> التوصيل</h4>
-                    <p>نقوم بالتوصيل لجميع مناطق أبوظبي</p>
-                    <p>وقت التوصيل: 25-45 دقيقة</p>
-                    <p>رسوم التوصيل: 5 دراهم</p>
+                    <h4><i class="fas fa-shipping-fast"></i> سياسة التوصيل</h4>
+                    <p style="margin-bottom: 10px; opacity: 0.9;">⚡ توصيل سريع خلال 25-45 دقيقة</p>
+                    <p style="margin-bottom: 10px; opacity: 0.9;">📍 تغطية جميع مناطق أبوظبي</p>
+                    <p style="margin-bottom: 10px; opacity: 0.9;">💰 رسوم التوصيل: 5 دراهم</p>
+                    <p style="opacity: 0.9;">🎁 توصيل مجاني للطلبات فوق 100 درهم</p>
                 </div>
                 
                 <div class="footer-section">
-                    <h4><i class="fas fa-share-alt"></i> تابعنا</h4>
+                    <h4><i class="fas fa-share-alt"></i> تواصل معنا</h4>
                     <div class="social-links">
                         <a href="#" class="social-link instagram">
                             <i class="fab fa-instagram"></i>
@@ -907,12 +1327,15 @@
                             <i class="fab fa-snapchat-ghost"></i>
                         </a>
                     </div>
+                    <p style="margin-top: 20px; opacity: 0.9; font-size: 0.9rem;">
+                        اشترك في نشرتنا البريدية للحصول على عروض خاصة
+                    </p>
                 </div>
             </div>
             
             <div class="footer-bottom">
                 <p class="copyright">
-                    <i class="fas fa-copyright"></i> 2024 وجبات رمضان أبوظبي
+                    <i class="fas fa-copyright"></i> 2024 رمضان كريم - أبوظبي. جميع الحقوق محفوظة
                 </p>
             </div>
         </div>
@@ -921,7 +1344,7 @@
     <!-- JavaScript المدمج -->
     <script>
         // ============================================
-        // 1. بيانات المطاعم
+        // 1. بيانات المطاعم الموسعة
         // ============================================
         const restaurantsData = [
             {
@@ -930,11 +1353,13 @@
                 city: "أبوظبي",
                 rating: 4.8,
                 deliveryTime: "25-40 دقيقة",
+                minOrder: 40,
+                tags: ["شامي", "تقليدي", "مشاوي"],
                 menu: [
-                    { id: 101, name: "فتوش رمضاني", price: 35, description: "سلطة فتوش بزيت الزيتون والرمان" },
-                    { id: 102, name: "شوربة عدس بالخضار", price: 25, description: "شوربة عدس مع خضار مشكلة" },
-                    { id: 103, name: "كباب حلبي", price: 55, description: "كباب الحلبي المشوي على الفحم" },
-                    { id: 104, name: "مشاوي مشكلة", price: 75, description: "مشاوي لحم ودجاج مع أرز وخضار" }
+                    { id: 101, name: "فتوش رمضاني", price: 35, description: "سلطة فتوش بزيت الزيتون والرمان", popular: true },
+                    { id: 102, name: "شوربة عدس بالخضار", price: 25, description: "شوربة عدس مع خضار مشكلة", popular: false },
+                    { id: 103, name: "كباب حلبي", price: 55, description: "كباب الحلبي المشوي على الفحم", popular: true },
+                    { id: 104, name: "مشاوي مشكلة", price: 75, description: "مشاوي لحم ودجاج مع أرز وخضار", popular: true }
                 ]
             },
             {
@@ -943,11 +1368,13 @@
                 city: "أبوظبي",
                 rating: 4.6,
                 deliveryTime: "30-45 دقيقة",
+                minOrder: 35,
+                tags: ["إماراتي", "أصيل", "هريس"],
                 menu: [
-                    { id: 201, name: "هريس لحم", price: 50, description: "هريس لحم ضأن مع قمح" },
-                    { id: 202, name: "مجبوس دجاج", price: 45, description: "أرز مجبوس مع دجاج وتوابل" },
-                    { id: 203, name: "ثريد لحم", price: 60, description: "ثريد لحم مع خبز رقاق" },
-                    { id: 204, name: "لقيمات", price: 20, description: "لقيمات بالعسل والسمسم" }
+                    { id: 201, name: "هريس لحم", price: 50, description: "هريس لحم ضأن مع قمح", popular: true },
+                    { id: 202, name: "مجبوس دجاج", price: 45, description: "أرز مجبوس مع دجاج وتوابل", popular: true },
+                    { id: 203, name: "ثريد لحم", price: 60, description: "ثريد لحم مع خبز رقاق", popular: false },
+                    { id: 204, name: "لقيمات", price: 20, description: "لقيمات بالعسل والسمسم", popular: true }
                 ]
             },
             {
@@ -956,10 +1383,12 @@
                 city: "المصفح",
                 rating: 4.7,
                 deliveryTime: "35-50 دقيقة",
+                minOrder: 50,
+                tags: ["مأكولات بحرية", "طازج", "سمك"],
                 menu: [
-                    { id: 301, name: "سمك ناجل مشوي", price: 85, description: "سمك ناجل طازج مشوي على الفحم" },
-                    { id: 302, name: "كباب السمك", price: 45, description: "كباب سمك مع بهارات خاصة" },
-                    { id: 303, name: "مقبلات بحرية", price: 65, description: "مقبلات متنوعة من المأكولات البحرية" }
+                    { id: 301, name: "سمك ناجل مشوي", price: 85, description: "سمك ناجل طازج مشوي على الفحم", popular: true },
+                    { id: 302, name: "كباب السمك", price: 45, description: "كباب سمك مع بهارات خاصة", popular: false },
+                    { id: 303, name: "مقبلات بحرية", price: 65, description: "مقبلات متنوعة من المأكولات البحرية", popular: true }
                 ]
             },
             {
@@ -968,10 +1397,12 @@
                 city: "الشهامة",
                 rating: 4.5,
                 deliveryTime: "20-35 دقيقة",
+                minOrder: 30,
+                tags: ["تركي", "كبدة", "معجنات"],
                 menu: [
-                    { id: 401, name: "كبدة تركية", price: 40, description: "كبدة تركية مشوية مع بصل" },
-                    { id: 402, name: "شاورما لحم", price: 35, description: "شاورما لحم تركية مع خبز" },
-                    { id: 403, name: "معجنات تركية", price: 45, description: "معجنات متنوعة بالجبن واللحوم" }
+                    { id: 401, name: "كبدة تركية", price: 40, description: "كبدة تركية مشوية مع بصل", popular: true },
+                    { id: 402, name: "شاورما لحم", price: 35, description: "شاورما لحم تركية مع خبز", popular: true },
+                    { id: 403, name: "معجنات تركية", price: 45, description: "معجنات متنوعة بالجبن واللحوم", popular: false }
                 ]
             },
             {
@@ -980,10 +1411,12 @@
                 city: "بني ياس",
                 rating: 4.4,
                 deliveryTime: "40-55 دقيقة",
+                minOrder: 45,
+                tags: ["سعودي", "مندي", "كبسة"],
                 menu: [
-                    { id: 501, name: "كبسة دجاج", price: 55, description: "أرز كبسة مع دجاج طازج" },
-                    { id: 502, name: "مندي لحم", price: 70, description: "لحم ضأن مع أرز مندي" },
-                    { id: 503, name: "مرقوق لحم", price: 50, description: "مرقوق لحم مع خبز" }
+                    { id: 501, name: "كبسة دجاج", price: 55, description: "أرز كبسة مع دجاج طازج", popular: true },
+                    { id: 502, name: "مندي لحم", price: 70, description: "لحم ضأن مع أرز مندي", popular: true },
+                    { id: 503, name: "مرقوق لحم", price: 50, description: "مرقوق لحم مع خبز", popular: false }
                 ]
             },
             {
@@ -992,10 +1425,40 @@
                 city: "خليفة",
                 rating: 4.9,
                 deliveryTime: "25-40 دقيقة",
+                minOrder: 25,
+                tags: ["وجبات سريعة", "برجر", "بيتزا"],
                 menu: [
-                    { id: 601, name: "برجر لحم خاص", price: 45, description: "برجر لحم مع جبنة و صلصة خاصة" },
-                    { id: 602, name: "دجاج كرسبي", price: 40, description: "دجاج مقرمش مع صلصات" },
-                    { id: 603, name: "بيتزا كبيرة", price: 65, description: "بيتزا كبيرة مع جميع الإضافات" }
+                    { id: 601, name: "برجر لحم خاص", price: 45, description: "برجر لحم مع جبنة و صلصة خاصة", popular: true },
+                    { id: 602, name: "دجاج كرسبي", price: 40, description: "دجاج مقرمش مع صلصات", popular: false },
+                    { id: 603, name: "بيتزا كبيرة", price: 65, description: "بيتزا كبيرة مع جميع الإضافات", popular: true }
+                ]
+            },
+            {
+                id: 7,
+                name: "مطعم الهنا الهندي",
+                city: "الزاهية",
+                rating: 4.3,
+                deliveryTime: "30-45 دقيقة",
+                minOrder: 40,
+                tags: ["هندي", "برياني", "حار"],
+                menu: [
+                    { id: 701, name: "برياني دجاج", price: 50, description: "أرز برياني مع دجاج وتوابل هندية", popular: true },
+                    { id: 702, name: "دجاج تندوري", price: 45, description: "دجاج تندوري مشوي", popular: true },
+                    { id: 703, name: "ساموسا خضار", price: 25, description: "ساموسا خضار مع صلصة النعناع", popular: false }
+                ]
+            },
+            {
+                id: 8,
+                name: "كافيه رمضانيات",
+                city: "المرفأ",
+                rating: 4.7,
+                deliveryTime: "20-35 دقيقة",
+                minOrder: 20,
+                tags: ["حلويات", "عصائر", "سحور"],
+                menu: [
+                    { id: 801, name: "قطايف بالقشطة", price: 30, description: "قطايف محشوة بالقشطة والجوز", popular: true },
+                    { id: 802, name: "كنافة نابلسية", price: 35, description: "كنافة نابلسية بالجبن", popular: true },
+                    { id: 803, name: "تمر باللبن", price: 20, description: "تمر طازج مع لبن بارد", popular: true }
                 ]
             }
         ];
@@ -1004,6 +1467,7 @@
         // 2. المتغيرات العامة
         // ============================================
         let cart = JSON.parse(localStorage.getItem('ramadanCart')) || [];
+        let currentRestaurants = [];
 
         // ============================================
         // 3. تهيئة الصفحة
@@ -1011,11 +1475,15 @@
         document.addEventListener('DOMContentLoaded', function() {
             // إخفاء شاشة التحميل
             setTimeout(() => {
-                document.getElementById('pageLoader').style.display = 'none';
-            }, 1000);
+                document.getElementById('pageLoader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('pageLoader').style.display = 'none';
+                }, 400);
+            }, 1500);
             
             // تحميل المطاعم
-            displayRestaurants(restaurantsData);
+            currentRestaurants = [...restaurantsData];
+            displayRestaurants(currentRestaurants);
             
             // تحديث السلة
             updateCart();
@@ -1030,19 +1498,22 @@
         function displayRestaurants(restaurants) {
             const container = document.getElementById('restaurantsContainer');
             const noResults = document.getElementById('noResults');
+            const countElement = document.getElementById('restaurantsCount');
             
             container.innerHTML = '';
             
             if (restaurants.length === 0) {
                 noResults.style.display = 'block';
+                countElement.textContent = '0 مطعم';
                 return;
             }
             
             noResults.style.display = 'none';
+            countElement.textContent = `${restaurants.length} مطاعم`;
             
             restaurants.forEach(restaurant => {
                 const card = document.createElement('div');
-                card.className = 'restaurant-card';
+                card.className = 'restaurant-card fade-in';
                 
                 // إنشاء قائمة الطعام
                 let menuItemsHTML = '';
@@ -1050,12 +1521,12 @@
                     menuItemsHTML += `
                         <div class="menu-item">
                             <div class="item-info">
-                                <div class="item-name">${item.name}</div>
+                                <div class="item-name">${item.name} ${item.popular ? '🔥' : ''}</div>
                                 <div class="item-description">${item.description}</div>
                             </div>
                             <div class="item-actions">
-                                <span class="item-price">${item.price} درهم</span>
-                                <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name}', ${item.price}, ${restaurant.id}, '${restaurant.name}')">
+                                <span class="item-price">${item.price} د.إ</span>
+                                <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, ${restaurant.id}, '${restaurant.name.replace(/'/g, "\\'")}')">
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>
@@ -1065,17 +1536,19 @@
                 
                 card.innerHTML = `
                     <div class="restaurant-header">
-                        <h3 class="restaurant-name">${restaurant.name}</h3>
-                        <div class="restaurant-meta">
-                            <span><i class="fas fa-map-marker-alt"></i> ${restaurant.city}</span>
-                            <span class="restaurant-rating"><i class="fas fa-star"></i> ${restaurant.rating}</span>
-                        </div>
+                        <h3 class="restaurant-name text-shadow">${restaurant.name}</h3>
                         <div class="restaurant-meta">
                             <span><i class="fas fa-clock"></i> ${restaurant.deliveryTime}</span>
-                            <span>${restaurant.menu.length} وجبات</span>
+                            <span class="restaurant-rating">
+                                <i class="fas fa-star"></i> ${restaurant.rating}
+                            </span>
                         </div>
                     </div>
                     <div class="restaurant-info">
+                        <div class="restaurant-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${restaurant.city} | طلب أدنى: ${restaurant.minOrder} د.إ</span>
+                        </div>
                         <div class="menu-items">
                             ${menuItemsHTML}
                         </div>
@@ -1094,6 +1567,7 @@
             if (cart.length > 0 && cart[0].restaurantId !== restaurantId) {
                 if (confirm('لديك عناصر من مطعم آخر في السلة. هل تريد تفريغ السلة وإضافة عناصر من هذا المطعم؟')) {
                     cart = [];
+                    localStorage.setItem('ramadanCart', JSON.stringify(cart));
                 } else {
                     return;
                 }
@@ -1116,18 +1590,22 @@
             }
             
             updateCart();
-            showNotification('تمت الإضافة إلى السلة', 'success');
+            showNotification('تمت الإضافة إلى السلة بنجاح 🛒', 'success');
             
             // تأثير على زر السلة
             const cartFab = document.getElementById('cartFab');
-            cartFab.style.transform = 'scale(1.1)';
-            setTimeout(() => cartFab.style.transform = 'scale(1)', 300);
+            cartFab.style.transform = 'scale(1.15)';
+            setTimeout(() => cartFab.style.transform = '', 300);
         }
 
         function removeFromCart(itemId) {
-            cart = cart.filter(item => item.id !== itemId);
-            updateCart();
-            showNotification('تم الإزالة من السلة', 'info');
+            const itemIndex = cart.findIndex(item => item.id === itemId);
+            if (itemIndex > -1) {
+                const itemName = cart[itemIndex].name;
+                cart.splice(itemIndex, 1);
+                updateCart();
+                showNotification(`تم إزالة ${itemName} من السلة`, 'info');
+            }
         }
 
         function updateCart() {
@@ -1142,12 +1620,23 @@
             
             // تحديث العدادات
             document.getElementById('fabBadge').textContent = totalItems;
-            document.getElementById('mobileCartCount').textContent = `${totalItems} عنصر`;
+            document.getElementById('headerBadge').textContent = totalItems;
+            document.getElementById('mobileCartCount').textContent = totalItems === 0 ? 'سلة فارغة' : `${totalItems} عنصر`;
             document.getElementById('checkoutBadge').textContent = totalItems;
             
             // تحديث المبالغ
-            document.getElementById('mobileCartTotal').textContent = `${subtotal} درهم`;
-            document.getElementById('mobileFinalTotal').textContent = `${total} درهم`;
+            document.getElementById('mobileCartTotal').textContent = `${subtotal} د.إ`;
+            document.getElementById('mobileFinalTotal').textContent = `${total} د.إ`;
+            
+            // تفعيل/تعطيل زر الإتمام
+            const checkoutBtn = document.getElementById('mobileCheckout');
+            if (totalItems > 0) {
+                checkoutBtn.disabled = false;
+                document.getElementById('cartSummary').style.display = 'block';
+            } else {
+                checkoutBtn.disabled = true;
+                document.getElementById('cartSummary').style.display = 'none';
+            }
             
             // تحديث محتويات السلة
             updateCartItems();
@@ -1160,8 +1649,8 @@
                 container.innerHTML = `
                     <div class="empty-cart-state">
                         <i class="fas fa-shopping-basket"></i>
-                        <p>السلة فارغة</p>
-                        <small>أضف بعض الوجبات من المطاعم</small>
+                        <p>سلة التسوق فارغة</p>
+                        <small>ابدأ بإضافة بعض الوجبات اللذيذة</small>
                     </div>
                 `;
                 return;
@@ -1171,23 +1660,23 @@
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
                 itemsHTML += `
-                    <div class="cart-item">
+                    <div class="cart-item fade-in">
                         <div class="cart-item-image">
                             <i class="fas fa-utensils"></i>
                         </div>
                         <div class="cart-item-details">
                             <div class="cart-item-name">${item.name}</div>
                             <div class="cart-item-restaurant">${item.restaurantName}</div>
-                            <div class="cart-item-price">${item.price} × ${item.quantity} = ${itemTotal} درهم</div>
+                            <div class="cart-item-price">${itemTotal} د.إ</div>
                         </div>
                         <div class="cart-item-controls">
                             <div class="quantity-controls">
                                 <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
-                                <span>${item.quantity}</span>
+                                <span class="quantity-display">${item.quantity}</span>
                                 <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
                             </div>
                             <button class="remove-item-btn" onclick="removeFromCart(${item.id})">
-                                <i class="fas fa-trash"></i>
+                                <i class="fas fa-times"></i>
                             </button>
                         </div>
                     </div>
@@ -1207,17 +1696,24 @@
             if (item) {
                 item.quantity = newQuantity;
                 updateCart();
+                showNotification('تم تحديث الكمية', 'info');
             }
         }
 
         function clearCart() {
-            if (cart.length === 0) return;
+            if (cart.length === 0) {
+                showNotification('السلة فارغة بالفعل', 'info');
+                return;
+            }
             
             if (confirm('هل أنت متأكد من تفريغ السلة؟')) {
+                const restaurantName = cart[0]?.restaurantName || '';
                 cart = [];
                 updateCart();
-                showNotification('تم تفريغ السلة', 'info');
-                document.getElementById('closeBottomSheet').click();
+                showNotification(`تم تفريغ سلة ${restaurantName}`, 'info');
+                if (window.innerWidth <= 768) {
+                    document.getElementById('closeBottomSheet').click();
+                }
             }
         }
 
@@ -1226,7 +1722,7 @@
         // ============================================
         function filterRestaurants() {
             const city = document.getElementById('cityFilter').value;
-            const search = document.getElementById('searchInput').value.toLowerCase();
+            const search = document.getElementById('searchInput').value.trim().toLowerCase();
             
             let filtered = restaurantsData;
             
@@ -1238,8 +1734,13 @@
             // بحث حسب النص
             if (search) {
                 filtered = filtered.filter(restaurant => {
+                    // البحث في اسم المطعم
                     if (restaurant.name.toLowerCase().includes(search)) return true;
                     
+                    // البحث في تاجات المطعم
+                    if (restaurant.tags.some(tag => tag.toLowerCase().includes(search))) return true;
+                    
+                    // البحث في قائمة الطعام
                     const hasMatchingItem = restaurant.menu.some(item => 
                         item.name.toLowerCase().includes(search) || 
                         item.description.toLowerCase().includes(search)
@@ -1249,6 +1750,7 @@
                 });
             }
             
+            currentRestaurants = filtered;
             displayRestaurants(filtered);
         }
 
@@ -1260,20 +1762,24 @@
             const notification = document.createElement('div');
             notification.style.cssText = `
                 position: fixed;
-                top: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: ${type === 'success' ? '#2ecc71' : type === 'error' ? '#e74c3c' : '#3498db'};
+                top: 90px;
+                right: 20px;
+                left: 20px;
+                background: ${type === 'success' ? 'linear-gradient(135deg, #2ecc71 0%, #27ae60 100%)' : 
+                            type === 'error' ? 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)' : 
+                            'linear-gradient(135deg, #3498db 0%, #2980b9 100%)'};
                 color: white;
-                padding: 15px 25px;
-                border-radius: 10px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                padding: 15px 20px;
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(0,0,0,0.15);
                 z-index: 9999;
-                font-weight: bold;
+                font-weight: 700;
                 animation: slideIn 0.3s ease;
                 text-align: center;
-                min-width: 250px;
-                max-width: 90%;
+                max-width: 500px;
+                margin: 0 auto;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255,255,255,0.1);
             `;
             
             notification.textContent = title;
@@ -1290,12 +1796,12 @@
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideIn {
-                from { top: -100px; opacity: 0; }
-                to { top: 20px; opacity: 1; }
+                from { transform: translateY(-100px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
             }
             @keyframes slideOut {
-                from { top: 20px; opacity: 1; }
-                to { top: -100px; opacity: 0; }
+                from { transform: translateY(0); opacity: 1; }
+                to { transform: translateY(-100px); opacity: 0; }
             }
         `;
         document.head.appendChild(style);
@@ -1311,73 +1817,150 @@
                 if (e.key === 'Enter') filterRestaurants();
             });
             
-            // البحث أثناء الكتابة
+            // البحث أثناء الكتابة مع Debounce
             let searchTimeout;
             document.getElementById('searchInput').addEventListener('input', function() {
                 clearTimeout(searchTimeout);
-                searchTimeout = setTimeout(filterRestaurants, 300);
+                searchTimeout = setTimeout(filterRestaurants, 500);
             });
             
             // السلة
-            document.getElementById('cartFab').addEventListener('click', function() {
-                document.getElementById('cartBottomSheet').classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
+            document.getElementById('cartFab').addEventListener('click', openCart);
+            document.getElementById('headerCartBtn').addEventListener('click', openCart);
             
-            document.getElementById('closeBottomSheet').addEventListener('click', function() {
-                document.getElementById('cartBottomSheet').classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
+            document.getElementById('closeBottomSheet').addEventListener('click', closeCart);
             
             document.getElementById('mobileClearCart').addEventListener('click', clearCart);
             
             // إتمام الطلب
-            document.getElementById('mobileCheckout').addEventListener('click', function() {
-                if (cart.length === 0) {
-                    showNotification('السلة فارغة', 'error');
-                    return;
-                }
-                
-                // إنشاء رسالة الطلب
-                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                const total = subtotal + 5;
-                
-                let orderDetails = '📋 *تفاصيل الطلب:*\n\n';
-                cart.forEach(item => {
-                    orderDetails += `• ${item.name} × ${item.quantity}: ${item.price * item.quantity} درهم\n`;
-                });
-                orderDetails += `\nالمجموع: ${subtotal} درهم\nرسوم التوصيل: 5 درهم\n*الإجمالي: ${total} درهم*`;
-                
-                const message = encodeURIComponent(`🚚 *طلب جديد من وجبات رمضان أبوظبي*\n\n${orderDetails}\n\nيرجى التواصل على واتساب خدمة العملاء لإكمال الطلب.`);
-                const whatsappURL = `https://wa.me/971501234567?text=${message}`;
-                
-                // عرض رسالة للمستخدم
-                alert(`✅ تم تجهيز طلبك!\n\nالإجمالي: ${total} درهم\n\nسيتم توجيهك لواتساب خدمة العملاء لإكمال عملية الدفع.`);
-                
-                // فتح واتساب
-                window.open(whatsappURL, '_blank');
-                
-                // تفريغ السلة بعد الإرسال
-                setTimeout(() => {
-                    cart = [];
-                    updateCart();
-                    document.getElementById('cartBottomSheet').classList.remove('active');
-                }, 1000);
-            });
+            document.getElementById('mobileCheckout').addEventListener('click', checkoutOrder);
             
             // إغلاق السلة عند النقر خارجها
             document.addEventListener('click', function(e) {
                 const cartSheet = document.getElementById('cartBottomSheet');
                 const cartFab = document.getElementById('cartFab');
+                const headerBtn = document.getElementById('headerCartBtn');
                 
                 if (cartSheet.classList.contains('active') && 
                     !cartSheet.contains(e.target) && 
-                    !cartFab.contains(e.target)) {
-                    cartSheet.classList.remove('active');
-                    document.body.style.overflow = 'auto';
+                    !cartFab.contains(e.target) &&
+                    !headerBtn.contains(e.target)) {
+                    closeCart();
+                }
+            });
+            
+            // إغلاق السلة بمفتاح ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeCart();
                 }
             });
         }
+
+        function openCart() {
+            document.getElementById('cartBottomSheet').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            // تحديث محتويات السلة عند الفتح
+            updateCartItems();
+        }
+
+        function closeCart() {
+            document.getElementById('cartBottomSheet').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function checkoutOrder() {
+            if (cart.length === 0) {
+                showNotification('السلة فارغة، أضف بعض الوجبات أولاً', 'error');
+                return;
+            }
+            
+            // حساب الإجمالي
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const total = subtotal + 5;
+            const restaurantName = cart[0].restaurantName;
+            
+            // بناء رسالة الطلب
+            let orderDetails = '📋 *تفاصيل طلب رمضان كريم*\n\n';
+            orderDetails += `المطعم: ${restaurantName}\n\n`;
+            orderDetails += '*الوجبات المطلوبة:*\n`;
+            
+            cart.forEach((item, index) => {
+                orderDetails += `${index + 1}. ${item.name} × ${item.quantity}: ${item.price * item.quantity} د.إ\n`;
+            });
+            
+            orderDetails += `\nالمجموع: ${subtotal} د.إ\n`;
+            orderDetails += `رسوم التوصيل: 5 د.إ\n`;
+            orderDetails += `*الإجمالي النهائي: ${total} د.إ*\n\n`;
+            orderDetails += '🚚 طلب توصيل خلال رمضان';
+            
+            const message = encodeURIComponent(orderDetails);
+            const whatsappURL = `https://wa.me/971501234567?text=${message}`;
+            
+            // عرض تأكيد الطلب
+            const confirmed = confirm(`هل تريد إتمام الطلب من ${restaurantName}؟\n\nالإجمالي: ${total} د.إ\n\nستتم إعادة توجيهك إلى واتساب لإكمال الطلب.`);
+            
+            if (confirmed) {
+                // حفظ الطلب مؤقتاً
+                const order = {
+                    items: [...cart],
+                    total: total,
+                    restaurant: restaurantName,
+                    timestamp: new Date().toISOString()
+                };
+                localStorage.setItem('lastOrder', JSON.stringify(order));
+                
+                // فتح واتساب
+                window.open(whatsappURL, '_blank');
+                
+                // تفريغ السلة بعد تأكيد الإرسال
+                setTimeout(() => {
+                    cart = [];
+                    updateCart();
+                    closeCart();
+                    showNotification('تم إرسال طلبك بنجاح! ✅', 'success');
+                }, 1000);
+            }
+        }
+
+        // ============================================
+        // 9. تحسينات إضافية
+        // ============================================
+        
+        // تحديث تلقائي للعروض الخاصة
+        function updatePromoBanner() {
+            const promos = [
+                "توصيل مجاني للطلبات فوق 100 درهم! 🎁",
+                "خصم 15% على أول طلب عبر التطبيق! 💰",
+                "وجبة سحور مجانية مع طلبات الإفطار! 🌙",
+                "أسرع توصيل في أبوظبي خلال 30 دقيقة! ⚡"
+            ];
+            
+            const randomPromo = promos[Math.floor(Math.random() * promos.length)];
+            const promoText = document.querySelector('.promo-text h3');
+            if (promoText) {
+                promoText.textContent = randomPromo;
+            }
+        }
+        
+        // تحديث العرض الترويجي كل 10 ثوان
+        setInterval(updatePromoBanner, 10000);
+        
+        // تأثيرات للمطاعم عند التمرير
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // مراقبة بطاقات المطاعم
+        setTimeout(() => {
+            document.querySelectorAll('.restaurant-card').forEach(card => {
+                observer.observe(card);
+            });
+        }, 1000);
     </script>
 </body>
 </html>
