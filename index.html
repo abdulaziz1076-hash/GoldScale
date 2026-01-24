@@ -414,10 +414,41 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
         
+        .restaurant-image {
+            height: 160px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .restaurant-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .restaurant-card:hover .restaurant-image img {
+            transform: scale(1.05);
+        }
+        
+        .restaurant-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0.1));
+        }
+        
         .restaurant-header {
-            background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
-            padding: 20px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
             color: white;
+            z-index: 2;
         }
         
         .restaurant-name {
@@ -447,6 +478,11 @@
             font-size: 0.9rem;
             margin-bottom: 15px;
             line-height: 1.4;
+            height: 42px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
         
         .view-restaurant-btn {
@@ -477,9 +513,31 @@
         }
         
         .restaurant-detail-header {
-            background: linear-gradient(135deg, #0a3d62 0%, #1e5f8a 100%);
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .restaurant-detail-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .restaurant-detail-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+        }
+        
+        .restaurant-detail-content {
+            position: relative;
+            z-index: 2;
+            padding: 30px 20px;
             color: white;
-            padding: 25px 20px;
         }
         
         .restaurant-detail-title {
@@ -536,16 +594,36 @@
         }
         
         .menu-item-card {
-            background: #f8f9fa;
+            background: white;
             border-radius: 10px;
-            padding: 15px;
+            overflow: hidden;
             border: 1px solid #eef2f7;
             transition: all 0.3s;
         }
         
         .menu-item-card:hover {
-            background: white;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .menu-item-image {
+            height: 140px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .menu-item-card:hover .menu-item-image img {
+            transform: scale(1.05);
+        }
+        
+        .menu-item-content {
+            padding: 15px;
         }
         
         .menu-item-header {
@@ -559,12 +637,14 @@
             font-size: 1.1rem;
             font-weight: 700;
             color: #2c3e50;
+            flex: 1;
         }
         
         .menu-item-price {
             font-size: 1.2rem;
             font-weight: 800;
             color: #e74c3c;
+            margin-left: 10px;
         }
         
         .menu-item-desc {
@@ -572,6 +652,11 @@
             font-size: 0.9rem;
             margin-bottom: 15px;
             line-height: 1.4;
+            height: 40px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
         
         .add-to-cart-btn {
@@ -876,6 +961,16 @@
             text-align: center;
         }
         
+        .copyright {
+            margin-bottom: 15px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
         /* الإشعارات */
         .notification {
             position: fixed;
@@ -1120,20 +1215,24 @@
         </header>
 
         <div class="restaurant-detail-header">
-            <div class="container">
-                <h1 class="restaurant-detail-title" id="detailRestaurantName">اسم المطعم</h1>
-                <div class="restaurant-detail-meta">
-                    <div class="meta-item">
-                        <i class="fas fa-star"></i>
-                        <span id="detailRating">0.0</span>
-                    </div>
-                    <div class="meta-item">
-                        <i class="fas fa-clock"></i>
-                        <span id="detailDeliveryTime">0-0 دقيقة</span>
-                    </div>
-                    <div class="meta-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span id="detailCity">المدينة</span>
+            <img id="detailRestaurantImage" src="" alt="" class="restaurant-detail-image">
+            <div class="restaurant-detail-overlay"></div>
+            <div class="restaurant-detail-content">
+                <div class="container">
+                    <h1 class="restaurant-detail-title" id="detailRestaurantName">اسم المطعم</h1>
+                    <div class="restaurant-detail-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-star"></i>
+                            <span id="detailRating">0.0</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span id="detailDeliveryTime">0-0 دقيقة</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="detailCity">المدينة</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1157,8 +1256,6 @@
             <i class="fas fa-shopping-cart"></i>
             <span class="fab-badge" id="detailFabBadge">0</span>
         </button>
-
-        <!-- نفس السلة المنبثقة تستخدم في كل الصفحات -->
     </div>
 
     <!-- الفوتر -->
@@ -1196,7 +1293,7 @@
     </footer>
 
     <script>
-        // بيانات المطاعم
+        // بيانات المطاعم مع الصور
         const restaurantsData = [
             {
                 id: 1,
@@ -1205,11 +1302,36 @@
                 rating: 4.8,
                 deliveryTime: "25-40 دقيقة",
                 description: "مطعم شامي يقدم أشهى الأطباق العربية التقليدية، متخصص في المأكولات الشامية والمشاوي.",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 menu: [
-                    { id: 101, name: "فتوش رمضاني", price: 35, description: "سلطة فتوش بزيت الزيتون والرمان" },
-                    { id: 102, name: "شوربة عدس", price: 25, description: "شوربة عدس مع خضار مشكلة" },
-                    { id: 103, name: "كباب حلبي", price: 55, description: "كباب الحلبي المشوي على الفحم" },
-                    { id: 104, name: "مشاوي مشكلة", price: 75, description: "مشاوي لحم ودجاج مع أرز وخضار" }
+                    { 
+                        id: 101, 
+                        name: "فتوش رمضاني", 
+                        price: 35, 
+                        description: "سلطة فتوش بزيت الزيتون والرمان والصنوبر المحمص",
+                        image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 102, 
+                        name: "شوربة عدس", 
+                        price: 25, 
+                        description: "شوربة عدس مع خضار مشكلة وعصير ليمون",
+                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 103, 
+                        name: "كباب حلبي", 
+                        price: 55, 
+                        description: "كباب الحلبي المشوي على الفحم مع بهارات خاصة",
+                        image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 104, 
+                        name: "مشاوي مشكلة", 
+                        price: 75, 
+                        description: "مشاوي لحم ودجاج مع أرز وخضار",
+                        image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    }
                 ]
             },
             {
@@ -1219,11 +1341,36 @@
                 rating: 4.6,
                 deliveryTime: "30-45 دقيقة",
                 description: "مطعم إماراتي أصيل يقدم أشهى الأطباق الإماراتية التقليدية والحديثة.",
+                image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 menu: [
-                    { id: 201, name: "هريس لحم", price: 50, description: "هريس لحم ضأن مع قمح وزيت الذرة" },
-                    { id: 202, name: "مجبوس دجاج", price: 45, description: "أرز مجبوس مع دجاج وتوابل إماراتية" },
-                    { id: 203, name: "ثريد لحم", price: 60, description: "ثريد لحم مع خبز رقاق ومرق خاص" },
-                    { id: 204, name: "لقيمات", price: 20, description: "لقيمات بالعسل والسمسم والهيل" }
+                    { 
+                        id: 201, 
+                        name: "هريس لحم", 
+                        price: 50, 
+                        description: "هريس لحم ضأن مع قمح وزيت الذرة",
+                        image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 202, 
+                        name: "مجبوس دجاج", 
+                        price: 45, 
+                        description: "أرز مجبوس مع دجاج وتوابل إماراتية",
+                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 203, 
+                        name: "ثريد لحم", 
+                        price: 60, 
+                        description: "ثريد لحم مع خبز رقاق ومرق خاص",
+                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 204, 
+                        name: "لقيمات", 
+                        price: 20, 
+                        description: "لقيمات بالعسل والسمسم والهيل",
+                        image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    }
                 ]
             },
             {
@@ -1233,10 +1380,29 @@
                 rating: 4.7,
                 deliveryTime: "35-50 دقيقة",
                 description: "مطعم بحري متخصص في المأكولات البحرية الطازجة والمشوية على الفحم.",
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 menu: [
-                    { id: 301, name: "سمك ناجل مشوي", price: 85, description: "سمك ناجل طازج مشوي على الفحم" },
-                    { id: 302, name: "كباب السمك", price: 45, description: "كباب سمك مع بهارات خاصة" },
-                    { id: 303, name: "مقبلات بحرية", price: 65, description: "مقبلات متنوعة من المأكولات البحرية" }
+                    { 
+                        id: 301, 
+                        name: "سمك ناجل مشوي", 
+                        price: 85, 
+                        description: "سمك ناجل طازج مشوي على الفحم",
+                        image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 302, 
+                        name: "كباب السمك", 
+                        price: 45, 
+                        description: "كباب سمك مع بهارات خاصة",
+                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 303, 
+                        name: "مقبلات بحرية", 
+                        price: 65, 
+                        description: "مقبلات متنوعة من المأكولات البحرية",
+                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    }
                 ]
             },
             {
@@ -1246,10 +1412,29 @@
                 rating: 4.5,
                 deliveryTime: "20-35 دقيقة",
                 description: "مطعم تركي يقدم أشهى المأكولات التركية من كبدة وشاورما ومعجنات.",
+                image: "https://images.unsplash.com/photo-1551503759-13c2d45c54a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 menu: [
-                    { id: 401, name: "كبدة تركية", price: 40, description: "كبدة تركية مشوية مع بصل وفلفل" },
-                    { id: 402, name: "شاورما لحم", price: 35, description: "شاورما لحم تركية مع خبز وثومية" },
-                    { id: 403, name: "معجنات تركية", price: 45, description: "معجنات متنوعة بالجبن واللحوم" }
+                    { 
+                        id: 401, 
+                        name: "كبدة تركية", 
+                        price: 40, 
+                        description: "كبدة تركية مشوية مع بصل وفلفل",
+                        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 402, 
+                        name: "شاورما لحم", 
+                        price: 35, 
+                        description: "شاورما لحم تركية مع خبز وثومية",
+                        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 403, 
+                        name: "معجنات تركية", 
+                        price: 45, 
+                        description: "معجنات متنوعة بالجبن واللحوم",
+                        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    }
                 ]
             },
             {
@@ -1259,10 +1444,29 @@
                 rating: 4.4,
                 deliveryTime: "40-55 دقيقة",
                 description: "مطعم سعودي يقدم أشهى أطباق المطبخ السعودي من كبسة ومندي ومرقوق.",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 menu: [
-                    { id: 501, name: "كبسة دجاج", price: 55, description: "أرز كبسة مع دجاج طازج وتوابل سعودية" },
-                    { id: 502, name: "مندي لحم", price: 70, description: "لحم ضأن مع أرز مندي مطبوخ في التنور" },
-                    { id: 503, name: "مرقوق لحم", price: 50, description: "مرقوق لحم مع خبز رقاق ومرق غني" }
+                    { 
+                        id: 501, 
+                        name: "كبسة دجاج", 
+                        price: 55, 
+                        description: "أرز كبسة مع دجاج طازج وتوابل سعودية",
+                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 502, 
+                        name: "مندي لحم", 
+                        price: 70, 
+                        description: "لحم ضأن مع أرز مندي مطبوخ في التنور",
+                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 503, 
+                        name: "مرقوق لحم", 
+                        price: 50, 
+                        description: "مرقوق لحم مع خبز رقاق ومرق غني",
+                        image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    }
                 ]
             },
             {
@@ -1272,10 +1476,29 @@
                 rating: 4.9,
                 deliveryTime: "25-40 دقيقة",
                 description: "أشهر مطعم للوجبات السريعة في أبوظبي، يقدم برجر ودجاج وبيتزا بأعلى جودة.",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                 menu: [
-                    { id: 601, name: "برجر لحم خاص", price: 45, description: "برجر لحم مع جبنة وصلصة خاصة وخضار طازجة" },
-                    { id: 602, name: "دجاج كرسبي", price: 40, description: "دجاج مقرمش مع صلصات متنوعة" },
-                    { id: 603, name: "بيتزا كبيرة", price: 65, description: "بيتزا كبيرة مع جميع الإضافات وجبنة موزاريلا" }
+                    { 
+                        id: 601, 
+                        name: "برجر لحم خاص", 
+                        price: 45, 
+                        description: "برجر لحم مع جبنة وصلصة خاصة وخضار طازجة",
+                        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 602, 
+                        name: "دجاج كرسبي", 
+                        price: 40, 
+                        description: "دجاج مقرمش مع صلصات متنوعة",
+                        image: "https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    },
+                    { 
+                        id: 603, 
+                        name: "بيتزا كبيرة", 
+                        price: 65, 
+                        description: "بيتزا كبيرة مع جميع الإضافات وجبنة موزاريلا",
+                        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                    }
                 ]
             }
         ];
@@ -1287,7 +1510,6 @@
 
         // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', function() {
-            // إخفاء شاشة التحميل
             setTimeout(() => {
                 document.getElementById('pageLoader').style.opacity = '0';
                 setTimeout(() => {
@@ -1295,52 +1517,43 @@
                 }, 500);
             }, 1500);
             
-            // عرض المطاعم
             displayRestaurants(currentRestaurants);
-            
-            // تحديث السلة
             updateCart();
-            
-            // إعداد الأحداث
             setupEventListeners();
         });
 
-        // عرض المطاعم
+        // عرض المطاعم مع الصور
         function displayRestaurants(restaurants) {
             const container = document.getElementById('restaurantsContainer');
             const noResults = document.getElementById('noResults');
             const countElement = document.getElementById('restaurantsCount');
             
-            // مسح المحتوى القديم
             container.innerHTML = '';
             
-            // إذا لم توجد مطاعم
             if (restaurants.length === 0) {
                 noResults.style.display = 'block';
                 countElement.textContent = '0 مطعم';
                 return;
             }
             
-            // إخفاء رسالة لا توجد نتائج
             noResults.style.display = 'none';
             countElement.textContent = `${restaurants.length} مطعم`;
             
-            // عرض المطاعم
             restaurants.forEach(restaurant => {
                 const card = document.createElement('div');
                 card.className = 'restaurant-card';
                 card.setAttribute('data-id', restaurant.id);
                 
                 card.innerHTML = `
-                    <div class="restaurant-header">
-                        <h3 class="restaurant-name">${restaurant.name}</h3>
-                        <div class="restaurant-meta">
-                            <span><i class="fas fa-map-marker-alt"></i> ${restaurant.city}</span>
-                            <span class="restaurant-rating"><i class="fas fa-star"></i> ${restaurant.rating}</span>
-                        </div>
-                        <div class="restaurant-meta">
-                            <span><i class="fas fa-clock"></i> ${restaurant.deliveryTime}</span>
-                            <span>${restaurant.menu.length} وجبة</span>
+                    <div class="restaurant-image">
+                        <img src="${restaurant.image}" alt="${restaurant.name}" onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'">
+                        <div class="restaurant-image-overlay"></div>
+                        <div class="restaurant-header">
+                            <h3 class="restaurant-name">${restaurant.name}</h3>
+                            <div class="restaurant-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> ${restaurant.city}</span>
+                                <span class="restaurant-rating"><i class="fas fa-star"></i> ${restaurant.rating}</span>
+                            </div>
                         </div>
                     </div>
                     <div class="restaurant-info">
@@ -1356,18 +1569,18 @@
             });
         }
 
-        // عرض تفاصيل المطعم
+        // عرض تفاصيل المطعم مع الصور
         function viewRestaurant(restaurantId) {
-            // البحث عن المطعم
             currentRestaurant = restaurantsData.find(r => r.id === restaurantId);
             if (!currentRestaurant) return;
             
-            // تحديث معلومات المطعم
+            // تحديث معلومات المطعم مع الصورة
             document.getElementById('detailRestaurantName').textContent = currentRestaurant.name;
             document.getElementById('detailPageTitle').textContent = currentRestaurant.name;
             document.getElementById('detailRating').textContent = currentRestaurant.rating;
             document.getElementById('detailDeliveryTime').textContent = currentRestaurant.deliveryTime;
             document.getElementById('detailCity').textContent = currentRestaurant.city;
+            document.getElementById('detailRestaurantImage').src = currentRestaurant.image;
             
             // عرض الوجبات
             displayMenuItems(currentRestaurant.menu);
@@ -1376,7 +1589,7 @@
             switchPage('restaurantDetailPage');
         }
 
-        // عرض قائمة الوجبات
+        // عرض قائمة الوجبات مع الصور
         function displayMenuItems(menuItems) {
             const container = document.getElementById('restaurantMenuItems');
             container.innerHTML = '';
@@ -1386,15 +1599,20 @@
                 itemCard.className = 'menu-item-card';
                 
                 itemCard.innerHTML = `
-                    <div class="menu-item-header">
-                        <h4 class="menu-item-name">${item.name}</h4>
-                        <span class="menu-item-price">${item.price} د.إ</span>
+                    <div class="menu-item-image">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'">
                     </div>
-                    <p class="menu-item-desc">${item.description}</p>
-                    <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, ${currentRestaurant.id}, '${currentRestaurant.name.replace(/'/g, "\\'")}')">
-                        <i class="fas fa-plus"></i>
-                        أضف إلى السلة
-                    </button>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-name">${item.name}</h4>
+                            <span class="menu-item-price">${item.price} د.إ</span>
+                        </div>
+                        <p class="menu-item-desc">${item.description}</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, ${currentRestaurant.id}, '${currentRestaurant.name.replace(/'/g, "\\'")}')">
+                            <i class="fas fa-plus"></i>
+                            أضف إلى السلة
+                        </button>
+                    </div>
                 `;
                 
                 container.appendChild(itemCard);
@@ -1435,10 +1653,8 @@
 
         // تحديث السلة
         function updateCart() {
-            // حفظ في localStorage
             localStorage.setItem('ramadanCart', JSON.stringify(cart));
             
-            // حساب المجموع
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             const deliveryFee = 5;
@@ -1556,21 +1772,15 @@
             
             let filtered = restaurantsData;
             
-            // فلترة حسب المدينة
             if (city !== 'all') {
                 filtered = filtered.filter(r => r.city === city);
             }
             
-            // بحث حسب النص
             if (search) {
                 filtered = filtered.filter(restaurant => {
-                    // البحث في اسم المطعم
                     if (restaurant.name.toLowerCase().includes(search)) return true;
-                    
-                    // البحث في وصف المطعم
                     if (restaurant.description.toLowerCase().includes(search)) return true;
                     
-                    // البحث في قائمة الطعام
                     const hasMatchingItem = restaurant.menu.some(item => 
                         item.name.toLowerCase().includes(search) || 
                         item.description.toLowerCase().includes(search)
@@ -1586,15 +1796,12 @@
 
         // التبديل بين الصفحات
         function switchPage(pageId) {
-            // إخفاء جميع الصفحات
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             
-            // إظهار الصفحة المطلوبة
             document.getElementById(pageId).classList.add('active');
             
-            // إذا كانت صفحة المطاعم، نحدث العرض
             if (pageId === 'restaurantsPage') {
                 displayRestaurants(currentRestaurants);
             }
@@ -1634,7 +1841,6 @@
             alert(`✅ تم تجهيز طلبك!\n\nالإجمالي: ${total} د.إ\n\nسيتم توجيهك لواتساب لإكمال عملية الدفع.`);
             window.open(whatsappURL, '_blank');
             
-            // تفريغ السلة بعد الإرسال
             setTimeout(() => {
                 cart = [];
                 updateCart();
@@ -1657,7 +1863,7 @@
 
         // إعداد الأحداث
         function setupEventListeners() {
-            // أزرار التنقل بين الصفحات
+            // أزرار التنقل
             document.getElementById('exploreRestaurantsBtn').addEventListener('click', () => {
                 switchPage('restaurantsPage');
             });
@@ -1674,12 +1880,9 @@
             document.getElementById('cityFilter').addEventListener('change', filterRestaurants);
             document.getElementById('searchBtn').addEventListener('click', filterRestaurants);
             document.getElementById('searchInput').addEventListener('keyup', function(e) {
-                if (e.key === 'Enter') {
-                    filterRestaurants();
-                }
+                if (e.key === 'Enter') filterRestaurants();
             });
             
-            // البحث أثناء الكتابة
             let searchTimeout;
             document.getElementById('searchInput').addEventListener('input', function() {
                 clearTimeout(searchTimeout);
@@ -1693,10 +1896,7 @@
             document.getElementById('detailCartBtn').addEventListener('click', openCart);
             document.getElementById('closeBottomSheet').addEventListener('click', closeCart);
             
-            // تفريغ السلة
             document.getElementById('mobileClearCart').addEventListener('click', clearCart);
-            
-            // إتمام الطلب
             document.getElementById('mobileCheckout').addEventListener('click', checkoutOrder);
             
             // إغلاق السلة عند النقر خارجها
