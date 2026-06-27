@@ -866,164 +866,385 @@
         </div>
     </div>
 
+    <!-- ============================================================ -->
+<!--  الإعلان الترويجي العلوي (نسخة مطابقة لهوية الموقع)         -->  
 <!-- ============================================================ -->
-<!-- الإعلان الترويجي العلوي (قابل للإلغاء)                       -->
-<!-- ============================================================ -->
-<div class="promo-banner-light" id="promoBanner">
-    <button class="promo-close-light" id="promoClose" aria-label="إغلاق">
+
+<div style="position: relative; margin: 12px 0; direction: rtl;">
+    <!-- الإعلان نفسه -->
+    <div class="promo-banner-official" id="promoBanner">
+        <div class="promo-content-official">
+            <div class="promo-logo-icon">
+                <i class="fas fa-store-alt"></i>
+            </div>
+            <div class="promo-text">
+                <span class="promo-title">سوق المشاريع المنزلية</span>
+                <span class="promo-subtitle">بيع · شراء · عرض مجاني</span>
+            </div>
+        </div>
+        <a href="https://souqalmashrie.onrender.com" target="_blank" class="promo-btn-official">
+            <i class="fas fa-arrow-left"></i> زور السوق الآن
+        </a>
+    </div>
+
+    <!-- زر الإلغاء (خارجي، أحمر، صغير) -->
+    <button class="promo-close-official" id="promoClose" aria-label="إلغاء الإعلان">
         <i class="fas fa-times"></i>
     </button>
-    <div class="promo-content-light">
-        <i class="fas fa-store-alt promo-icon-light"></i>
-        <div>
-            <strong>سوق المشاريع المنزلية</strong>
-            <span>بيع · شراء · عرض مجاني</span>
-        </div>
-    </div>
-    <a href="https://souqalmashrie.onrender.com" target="_blank" class="promo-btn-light">
-        <i class="fas fa-arrow-left"></i> زور السوق
-    </a>
 </div>
 
 <style>
-    /* ===== الإعلان بخلفية فاتحة ===== */
-    .promo-banner-light {
+    /* ============================================================ */
+    /*  الإعلان مطابق تماماً لهوية الموقع souqalmasharie.onrender.com */
+    /* ============================================================ */
+
+    /* ===== الإعلان الرئيسي ===== */
+    .promo-banner-official {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: #eef6f2; /* أخضر فاتح جداً وناعم */
-        /* استخدام تدرج فاتح بديل من الهوية */
-        background: linear-gradient(135deg, #eaf3ee, #f5faf7);
-        color: var(--primary-dark);
-        padding: 10px 20px;
-        border-radius: 12px;
-        margin: 12px 0;
-        box-shadow: var(--card-shadow); /* ظل خفيف من الهوية */
-        border: 1px solid rgba(212, 175, 55, 0.25); /* لمسة ذهبية خفيفة */
-        position: relative;
+        background: linear-gradient(135deg, #0F3D2E 0%, #1A5F44 100%);
+        color: #ffffff;
+        padding: 14px 24px;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(15, 61, 46, 0.15);
+        border: 1px solid rgba(212, 175, 55, 0.25);
         transition: all 0.4s ease;
         overflow: hidden;
         direction: rtl;
-        gap: 12px;
+        gap: 16px;
         flex-wrap: wrap;
+        min-height: 56px;
+        position: relative;
     }
-    .promo-banner-light.hidden {
-        max-height: 0;
-        padding: 0 20px;
-        margin: 0;
+    .promo-banner-official::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #D4AF37, #f5d06b, #D4AF37);
+        z-index: -1;
+        opacity: 0.3;
+    }
+
+    .promo-banner-official.hidden {
+        max-height: 0 !important;
+        min-height: 0 !important;
+        padding: 0 24px !important;
+        margin: 0 !important;
         opacity: 0;
-        transform: translateY(-8px);
+        transform: translateY(-10px) scale(0.97);
         pointer-events: none;
         border-width: 0;
+        overflow: hidden;
     }
 
     /* ===== المحتوى الداخلي ===== */
-    .promo-content-light {
+    .promo-content-official {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 14px;
         flex: 1 1 auto;
     }
-    .promo-icon-light {
-        font-size: 28px;
-        color: var(--secondary); /* ذهبي من الهوية */
+    .promo-logo-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(212, 175, 55, 0.15);
+        border: 2px solid #D4AF37;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #D4AF37;
+        flex-shrink: 0;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
     }
-    .promo-content-light strong {
-        font-size: 18px;
+    .promo-text {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+    .promo-title {
+        font-family: 'El Messiri', 'Almarai', serif;
+        font-size: 20px;
         font-weight: 700;
-        color: var(--primary-dark);
-        font-family: 'El Messiri', serif; /* من الهوية */
+        color: #ffffff;
+        line-height: 1.2;
     }
-    .promo-content-light span {
+    .promo-subtitle {
+        font-family: 'Almarai', 'Poppins', sans-serif;
         font-size: 13px;
-        background: rgba(15, 61, 46, 0.08); /* أخضر شفاف جداً */
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.08);
         padding: 2px 14px;
         border-radius: 30px;
-        font-weight: 600;
-        color: var(--primary-dark);
-        margin-right: 6px;
+        display: inline-block;
+        width: fit-content;
+        border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    /* ===== زر الذهاب (ذهبي) ===== */
-    .promo-btn-light {
-        background: var(--secondary);
-        color: var(--primary-dark);
-        padding: 8px 20px;
+    /* ===== زر الذهاب ===== */
+    .promo-btn-official {
+        background: #D4AF37;
+        color: #0F3D2E;
+        padding: 10px 24px;
         border-radius: 40px;
         text-decoration: none;
         font-weight: 700;
-        font-size: 14px;
-        transition: 0.25s;
+        font-size: 15px;
+        transition: all 0.3s ease;
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
         white-space: nowrap;
         border: 1px solid transparent;
-        box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        font-family: 'Almarai', 'Poppins', sans-serif;
+        letter-spacing: 0.3px;
+        /* العرض حسب المحتوى، وليس 100% */
+        width: auto;
+        flex-shrink: 0;
     }
-    .promo-btn-light:hover {
-        background: var(--secondary-light);
-        transform: translateY(-2px);
-        box-shadow: var(--hover-shadow);
+    .promo-btn-official:hover {
+        background: #f5d06b;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        color: #0a2a1f;
+    }
+    .promo-btn-official:active {
+        transform: scale(0.97);
     }
 
-    /* ===== زر الإلغاء (×) ===== */
-    .promo-close-light {
+    /* ===== زر الإلغاء (أحمر، صغير، خارج الإعلان) ===== */
+    .promo-close-official {
         position: absolute;
-        top: 6px;
-        left: 10px; /* في RTL = أعلى اليمين */
-        background: rgba(0, 0, 0, 0.04);
-        border: none;
-        color: var(--gray);
-        width: 30px;
-        height: 30px;
+        top: -12px;
+        left: -12px;
+        width: 28px;
+        height: 28px;
+        background: #C41E3A;
+        color: #ffffff !important;
+        border: 2px solid #ffffff;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 14px;
         cursor: pointer;
-        transition: 0.25s;
-        font-size: 16px;
-        border: 1px solid rgba(0, 0, 0, 0.04);
+        box-shadow: 0 2px 12px rgba(196, 30, 58, 0.5);
+        transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+        z-index: 30;
         padding: 0;
         line-height: 1;
     }
-    .promo-close-light:hover {
-        background: var(--danger); /* أحمر من الهوية */
-        color: #fff;
-        transform: rotate(90deg) scale(1.1);
+    .promo-close-official:hover {
+        transform: scale(1.2) rotate(90deg);
+        background: #a01830;
+        box-shadow: 0 4px 20px rgba(196, 30, 58, 0.7);
+    }
+    .promo-close-official i {
+        color: #ffffff;
+        font-size: 13px;
+        pointer-events: none;
     }
 
-    /* ===== استجابة للشاشات الصغيرة ===== */
-    @media (max-width: 550px) {
-        .promo-banner-light {
-            padding: 14px 16px;
-            flex-direction: column;
-            align-items: stretch;
-            gap: 8px;
+    /* ============================================================ */
+    /*  استجابة للشاشات المختلفة (جوال، تابلت، كمبيوتر)              */
+    /* ============================================================ */
+
+    /* ---- شاشات متوسطة (تابلت) ---- */
+    @media (min-width: 768px) and (max-width: 1199px) {
+        .promo-banner-official {
+            padding: 16px 24px;
+            border-radius: 20px;
         }
-        .promo-content-light {
-            justify-content: center;
-            flex-wrap: wrap;
+        .promo-title {
+            font-size: 22px;
         }
-        .promo-btn-light {
-            justify-content: center;
-            width: 100%;
+        .promo-subtitle {
+            font-size: 14px;
         }
-        .promo-close-light {
-            top: 4px;
-            left: 6px;
-            width: 26px;
-            height: 26px;
-            font-size: 13px;
+        .promo-btn-official {
+            font-size: 16px;
+            padding: 10px 28px;
         }
-        .promo-content-light span {
-            margin-right: 0;
+        .promo-logo-icon {
+            width: 54px;
+            height: 54px;
+            font-size: 28px;
+        }
+        .promo-close-official {
+            width: 30px;
+            height: 30px;
+            font-size: 15px;
+            top: -14px;
+            left: -14px;
         }
     }
+
+    /* ---- شاشات صغيرة (جوال) ---- */
+    @media (max-width: 550px) {
+        .promo-banner-official {
+            padding: 14px 18px;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            border-radius: 16px;
+            min-height: auto;
+        }
+        .promo-content-official {
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
+        }
+        .promo-logo-icon {
+            width: 42px;
+            height: 42px;
+            font-size: 20px;
+            border-radius: 12px;
+        }
+        .promo-title {
+            font-size: 17px;
+            text-align: center;
+        }
+        .promo-subtitle {
+            font-size: 12px;
+            padding: 2px 12px;
+            margin: 0 auto;
+        }
+        /* الزر هنا صغير وليس بعرض كامل */
+        .promo-btn-official {
+            font-size: 14px;
+            padding: 8px 18px;
+            width: auto; /* مهم: يمنع العرض الكامل */
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .promo-close-official {
+            top: -10px;
+            left: -10px;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            border-width: 2px;
+        }
+        .promo-close-official i {
+            font-size: 11px;
+        }
+    }
+
+    /* ---- شاشات صغيرة جداً (≤ 380px) ---- */
     @media (max-width: 380px) {
-        .promo-content-light strong { font-size: 15px; }
-        .promo-icon-light { font-size: 22px; }
+        .promo-banner-official {
+            padding: 12px 14px;
+            gap: 8px;
+        }
+        .promo-title {
+            font-size: 15px;
+        }
+        .promo-subtitle {
+            font-size: 10px;
+            padding: 1px 10px;
+        }
+        .promo-logo-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+        .promo-btn-official {
+            font-size: 12px;
+            padding: 6px 14px;
+            width: auto;
+        }
+        .promo-close-official {
+            top: -8px;
+            left: -8px;
+            width: 22px;
+            height: 22px;
+            font-size: 10px;
+        }
+        .promo-close-official i {
+            font-size: 9px;
+        }
+    }
+
+    /* ---- شاشات كبيرة (كمبيوتر) ---- */
+    @media (min-width: 1200px) {
+        .promo-banner-official {
+            padding: 18px 32px;
+            border-radius: 22px;
+            margin: 16px 0;
+            min-height: 64px;
+        }
+        .promo-title {
+            font-size: 24px;
+        }
+        .promo-subtitle {
+            font-size: 15px;
+            padding: 3px 18px;
+        }
+        .promo-btn-official {
+            font-size: 17px;
+            padding: 12px 32px;
+        }
+        .promo-logo-icon {
+            width: 60px;
+            height: 60px;
+            font-size: 30px;
+            border-radius: 16px;
+        }
+        .promo-close-official {
+            top: -14px;
+            left: -14px;
+            width: 32px;
+            height: 32px;
+            font-size: 16px;
+        }
+        .promo-close-official i {
+            font-size: 15px;
+        }
+    }
+
+    /* ---- شاشات كبيرة جداً (≥ 1600px) ---- */
+    @media (min-width: 1600px) {
+        .promo-banner-official {
+            padding: 22px 40px;
+            border-radius: 28px;
+            margin: 20px 0;
+        }
+        .promo-title {
+            font-size: 28px;
+        }
+        .promo-subtitle {
+            font-size: 17px;
+            padding: 4px 22px;
+        }
+        .promo-btn-official {
+            font-size: 19px;
+            padding: 14px 38px;
+        }
+        .promo-logo-icon {
+            width: 70px;
+            height: 70px;
+            font-size: 34px;
+        }
+        .promo-close-official {
+            top: -16px;
+            left: -16px;
+            width: 36px;
+            height: 36px;
+            font-size: 18px;
+        }
+        .promo-close-official i {
+            font-size: 17px;
+        }
     }
 </style>
 
@@ -1031,23 +1252,40 @@
     (function() {
         const banner = document.getElementById('promoBanner');
         const closeBtn = document.getElementById('promoClose');
-        const key = 'promoBannerClosed';
+        const STORAGE_KEY = 'promoBannerHideUntil';
 
-        // إخفاء فوري إذا كان مخزناً سابقاً
-        if (localStorage.getItem(key) === 'true') {
-            banner.classList.add('hidden');
-            banner.style.display = 'none';
+        const HIDE_DURATION_MS = 60 * 60 * 1000;
+
+        function updateBanner() {
+            const hideUntil = localStorage.getItem(STORAGE_KEY);
+            const now = Date.now();
+
+            if (hideUntil && parseInt(hideUntil, 10) > now) {
+                banner.classList.add('hidden');
+            } else {
+                if (hideUntil) localStorage.removeItem(STORAGE_KEY);
+                banner.classList.remove('hidden');
+            }
         }
+
+        updateBanner();
 
         closeBtn.addEventListener('click', function(e) {
             e.preventDefault();
+            const hideUntil = Date.now() + HIDE_DURATION_MS;
+            localStorage.setItem(STORAGE_KEY, String(hideUntil));
             banner.classList.add('hidden');
-            setTimeout(() => { banner.style.display = 'none'; }, 450);
-            localStorage.setItem(key, 'true');
         });
+
+        setInterval(function() {
+            const hideUntil = localStorage.getItem(STORAGE_KEY);
+            if (hideUntil && parseInt(hideUntil, 10) < Date.now()) {
+                localStorage.removeItem(STORAGE_KEY);
+                banner.classList.remove('hidden');
+            }
+        }, 15000);
     })();
 </script>
-
 
     <!-- ============================================================ -->
     <!-- 1. الحاسبة (في الأعلى)                                       -->
