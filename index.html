@@ -1253,31 +1253,39 @@
         // ================================================================
         // جلب الأسعار - نظام احتياطي ذكي
         // ================================================================
-        async function fetchGoldPrice() {
-            // المحاولة 1: Metals-API (المصدر الرئيسي)
-            try {
-                const response = await fetch(METALS_API_URL);
-                if (!response.ok) throw new Error(`Metals-API Error: ${response.status}`);
-                const data = await response.json();
-
-                if (data && data.rates && data.rates.XAU) {
-                    let price = parseFloat(data.rates.XAU);
-                    if (!isNaN(price) && price > 0) {
-                        if (price < 1) {
-                            price = 1 / price;
-                        }
-                        currentGoldPriceUSD = price;
-                        lastFetchTime = new Date();
-                        updateTimestamp();
-                        updateAllCards();
-                        calculateGold();
-                        return price;
-                    }
-                }
-                throw new Error('Invalid data format from Metals-API');
-            } catch (error) {
-                console.warn('⚠️ Metals-API فشل، نحاول المصدر الاحتياطي...', error);
-            }
+        // ================================================================
+// جلب الأسعار من الخادم الخاص بنا (بدلاً من API المباشر)
+// ================================================================
+async function fetchGoldPrice() {
+    try {
+        // غير هذا الرابط إلى رابط الخادم الجديد بعد نشره
+        const SERVER_URL = "https://your-server-name.onrender.com/api/price";
+        const response = await fetch(SERVER_URL);
+        
+        if (!response.ok) {
+            throw new Error(`Server Error: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        if (result.success && result.data && result.data.usd) {
+            currentGoldPriceUSD = result.data.usd;
+            lastFetchTime = new Date();
+            updateTimestamp();
+            updateAllCards();
+            calculateGold();
+            return currentGoldPriceUSD;
+        } else {
+            throw new Error('Invalid data from server');
+        }
+    } catch (error) {
+        console.warn('⚠️ فشل جلب السعر من الخادم، نستخدم الاحتياطي.', error);
+        currentGoldPriceUSD = 4082;
+        updateAllCards();
+        calculateGold();
+        return currentGoldPriceUSD;
+    }
+}
 
             // المحاولة 2: GoldAPI.io (بدون مفتاح - مصادر مفتوحة)
             try {
