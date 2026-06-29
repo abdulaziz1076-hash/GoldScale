@@ -1,7 +1,7 @@
 {
   "name": "gold-price-server",
   "version": "1.0.0",
-  "description": "خادم لتحديث أسعار الذهب تلقائياً",
+  "description": "خادم لتحديث أسعار الذهب",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
