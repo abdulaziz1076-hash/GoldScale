@@ -1,0 +1,6 @@
+# السماح لجميع محركات البحث بزحف الموقع بالكامل
+User-agent: *
+Allow: /
+
+# تحديد مكان خريطة الموقع (Sitemap)
+Sitemap: https://yourdomain.com/sitemap.xml
